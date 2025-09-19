@@ -17,17 +17,15 @@ import {
     Title,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
 import { IconSearch, IconTrash, IconUserPlus, IconUser } from "@tabler/icons-react";
 
-// ---- Types ----
 type Client = {
-    id: number; // numero (ID interno)
-    iscrizione: string; // numero iscrizione (string per flessibilità)
+    id: number; 
+    iscrizione: string; 
     cognome: string;
     telefono: string;
     email?: string;
-    hasAccount: boolean; // true se ha un account (email/password)
+    hasAccount: boolean; 
 };
 
 // ---- Mock data (demo) ----
@@ -58,18 +56,17 @@ export default function AdminDashboard() {
         const q = search.toLowerCase();
         return data.filter((c) =>
             c.id.toString().includes(q) ||
-        c.iscrizione.toLowerCase().includes(q) ||
-        c.cognome.toLowerCase().includes(q) ||
-        c.telefono.toLowerCase().includes(q) 
-    );
-}, [data, search]);
+            c.iscrizione.toLowerCase().includes(q) ||
+            c.cognome.toLowerCase().includes(q) ||
+            c.telefono.toLowerCase().includes(q) 
+        );
+    }, [data, search]);
 
 // ---- Pagination ----
 const total = Math.max(1, Math.ceil(filtered.length / pageSize));
 const pageData = filtered.slice((page - 1) * pageSize, page * pageSize);
 
 React.useEffect(() => {
-    // reset page when filters change
     setPage(1);
 }, [search, pageSize]);
 
@@ -93,21 +90,11 @@ return (
     <Group justify="space-between" align="center">
     <Title order={2}>Dashboard</Title>
     <Group gap="xs">
-    <Button
-    component={Link}
-    href="/admin/clients/new-with-account"
-    leftSection={<IconUserPlus size={18} />}
-    >
+    <Group gap="xs">
+    <Button component={Link} href="/admin/clients/new">
     Aggiungi cliente
     </Button>
-    <Button
-    component={Link}
-    href="/admin/clients/new-without-account"
-    variant="default"
-    leftSection={<IconUser size={18} />}
-    >
-    Aggiungi cliente (senza account)
-    </Button>
+    </Group>
     </Group>
     </Group>
     
@@ -160,7 +147,9 @@ return (
             <Table.Tr key={c.id}>
             <Table.Td>{c.id}</Table.Td>
             <Table.Td>{c.iscrizione}</Table.Td>
-            <Table.Td>{c.cognome}</Table.Td>
+            <Table.Td><Link href={`/admin/clients/${c.id}`} className="hover:underline">
+            {c.cognome}
+            </Link></Table.Td>
             <Table.Td>{c.telefono}</Table.Td>
             <Table.Td>{c.email ?? <Text c="dimmed">—</Text>}</Table.Td>
             <Table.Td>
@@ -172,7 +161,6 @@ return (
             </Table.Td>
             <Table.Td>
             <Group gap={6}>
-            {/* (Futuro) component={Link} href={`/admin/clients/${c.id}`} */}
             <ActionIcon
             variant="subtle"
             color="red"
@@ -199,7 +187,6 @@ return (
     </Stack>
     </Card>
     
-    {/* Modal conferma eliminazione */}
     <Modal opened={opened} onClose={close} title="Conferma Eliminazione!" centered>
     <Stack gap="md">
     <Text>

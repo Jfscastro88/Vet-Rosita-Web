@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="it">
       <body>
         <Providers>
-          <NavbarClient />  {/* nenhum handler passado do server! */}
+          <NavbarClient /> 
           <div className="h-15 sm:h-20"></div>
           {children}
         </Providers>

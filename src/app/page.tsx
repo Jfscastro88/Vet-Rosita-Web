@@ -1,8 +1,5 @@
 import React from "react";
 
-
-import Link from "next/link";
-
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center relative overflow-hidden">

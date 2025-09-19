@@ -6,16 +6,9 @@ import { Button, Group, Paper } from "@mantine/core";
 
 export type NavbarProps = {
     isAuthenticated?: boolean;
-    onLogout?: () => void; // OK: used only when this component is rendered by a *client* wrapper
+    onLogout?: () => void; 
 };
 
-/**
-* Navbar (Mantine + Tailwind)
-* - fixed on top, centered horizontally
-* - default width ~40vw; expands to ~80vw on hover
-* - shows Home / Login / Register (if logged out)
-* - shows Home / Dashboard / Logout (if logged in)
-*/
 export default function Navbar({ isAuthenticated, onLogout }: NavbarProps) {
     return (
         <div className="fixed left-1/2 -translate-x-1/2 top-4 z-50 w-[90vw] sm:w-[70vw]">
@@ -62,11 +55,6 @@ export default function Navbar({ isAuthenticated, onLogout }: NavbarProps) {
     );
 }
 
-/**
-* NavbarClient: piccolo wrapper *client-only*
-* Evita l'errore "Event handlers cannot be passed to Client Component props"
-* perché il layout (Server Component) non passa funzioni: qui dentro definiamo gli handler.
-*/
 export function NavbarClient() {
     // TODO: qui legge lo stato auth dal client (es: Supabase, cookie, Zustand, ecc.)
     const [isAuthenticated, setIsAuthenticated] = React.useState(false);
