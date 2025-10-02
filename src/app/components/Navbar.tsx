@@ -16,13 +16,13 @@ export default function Navbar({ isAuthenticated, onLogout }: NavbarProps) {
         shadow="md"
         radius="xl"
         withBorder
-        className="mx-auto group transition-all duration-300 ease-out w-[40vw] hover:w-[60vw] max-w-[1000px] min-w-[280px] backdrop-blur bg-white/80 text-gray-900"
+        className="mx-auto group transition-all duration-700 ease-out w-[40vw] hover:w-[60vw] max-w-[1000px] min-w-[280px] backdrop-blur bg-white/80 text-gray-900"
       >
         <nav className="px-3 py-2">
           <Group justify="center" gap="xs" wrap="nowrap">
             <Link
               href="/"
-              className="px-3 py-1 rounded-full transition-transform duration-150 hover:scale-105 active:scale-95"
+              className="px-3 py-1 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
             >
               Home
             </Link>
@@ -31,7 +31,7 @@ export default function Navbar({ isAuthenticated, onLogout }: NavbarProps) {
               <>
                 <Link
                   href="/dashboard"
-                  className="px-3 py-1 rounded-full transition-transform duration-150 hover:scale-105 active:scale-95"
+                  className="px-3 py-1 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
                 >
                   Dashboard
                 </Link>
@@ -43,13 +43,13 @@ export default function Navbar({ isAuthenticated, onLogout }: NavbarProps) {
               <>
                 <Link
                   href="/login"
-                  className="px-3 py-1 rounded-full transition-transform duration-150 hover:scale-105 active:scale-95"
+                  className="px-3 py-1 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
                 >
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="px-3 py-1 rounded-full transition-transform duration-150 hover:scale-105 active:scale-95"
+                  className="px-3 py-1 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
                 >
                   Register
                 </Link>
