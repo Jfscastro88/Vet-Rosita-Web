@@ -7,9 +7,9 @@ import { DatesProvider } from "@mantine/dates";
 import "dayjs/locale/it";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    return (
-        <MantineProvider>
-        <DatesProvider settings={{ locale: "it" }}>{children}</DatesProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider>
+      <DatesProvider settings={{ locale: "it" }}>{children}</DatesProvider>
+    </MantineProvider>
+  );
 }
