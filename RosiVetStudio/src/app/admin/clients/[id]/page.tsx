@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Card, Divider, Stack, Title } from "@mantine/core";
+import React, { Suspense } from "react";
+import { Card, Divider, Stack, Title, Loader, Text } from "@mantine/core";
 import { useParams } from "next/navigation";
 import type { Client } from "@/types/client";
 import type { Animal } from "@/types/animal";
@@ -19,7 +19,7 @@ function uid() {
   return Math.random().toString(36).slice(2, 10);
 }
 
-export default function Page() {
+function ClientDetailContent() {
   const params = useParams() as { id?: string };
   const clientId = Number(params?.id ?? 0);
 
@@ -141,5 +141,28 @@ export default function Page() {
         onSave={saveEdit}
       />
     </div>
+  );
+}
+
+// Loading component
+function ClientDetailLoading() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900 p-4 pt-24 sm:pt-28 flex items-center justify-center">
+      <Card withBorder radius="lg" shadow="sm" className="max-w-md w-full">
+        <Stack gap="md" align="center">
+          <Loader size="lg" />
+          <Text>Caricamento dettagli cliente...</Text>
+        </Stack>
+      </Card>
+    </div>
+  );
+}
+
+// Main export with Suspense
+export default function Page() {
+  return (
+    <Suspense fallback={<ClientDetailLoading />}>
+      <ClientDetailContent />
+    </Suspense>
   );
 }

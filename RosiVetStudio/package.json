@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "analyze": "ANALYZE=true next build",
+    "build:prod": "NODE_ENV=production next build"
   },
   "dependencies": {
     "@mantine/core": "^8.3.1",
@@ -18,15 +20,10 @@
     "@supabase/supabase-js": "^2.57.4",
     "@tabler/icons-react": "^3.35.0",
     "dayjs": "^1.11.18",
-    "leaflet": "^1.9.4",
     "next": "15.5.3",
     "next-auth": "^4.24.11",
-    "next-intl": "^4.3.9",
-    "next-seo": "^6.8.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-leaflet": "^5.0.0",
-    "tree-node-cli": "^1.6.0",
     "zod": "^4.1.9"
   },
   "devDependencies": {

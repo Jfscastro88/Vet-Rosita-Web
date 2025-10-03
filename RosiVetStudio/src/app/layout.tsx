@@ -7,6 +7,8 @@ import { NavbarClient } from "./components/Navbar";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "700"], // regular + bold
+  display: "swap", // Optimize font loading
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <body>
+      <body className={roboto.className}>
         <Providers>
           <NavbarClient />
           <div className="h-15 sm:h-20"></div>
