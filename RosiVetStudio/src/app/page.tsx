@@ -19,6 +19,9 @@ export default function HomePage() {
         <h1 className="text-center font-extrabold tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl px-4">
           something great is coming soon!
         </h1>
+        <h2 className="text-center font-extrabold tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl px-4">
+          Esotic Vet Studio
+        </h2>
       </div>
     </div>
   );
