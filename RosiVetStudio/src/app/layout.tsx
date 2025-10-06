@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="it">
       <body className={`${roboto.className}`}>
         <Providers>
-          {/* <NavbarClient /> */}
+          <NavbarClient />
           {children}
         </Providers>
         <SpeedInsights />

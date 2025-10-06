@@ -10,9 +10,11 @@ import { mantineZodResolver } from "@/lib/validators/mantineZodResolver";
 export default function LoginForm({
   onSubmit,
   onGoogle,
+  loading = false,
 }: {
   onSubmit: (v: LoginValues) => void;
   onGoogle: () => void;
+  loading?: boolean;
 }) {
   const form = useForm<LoginValues>({
     initialValues: { email: "", password: "", remember: true },
@@ -49,7 +51,15 @@ export default function LoginForm({
           {...form.getInputProps("remember", { type: "checkbox" })}
         />
 
-        <Button type="submit" variant="filled" color="rgba(63, 140, 133, 1)" size="md" radius="xl">
+        <Button
+          type="submit"
+          variant="filled"
+          color="rgba(63, 140, 133, 1)"
+          size="md"
+          radius="xl"
+          loading={loading}
+          disabled={loading}
+        >
           Accedi
         </Button>
 

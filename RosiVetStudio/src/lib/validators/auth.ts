@@ -16,7 +16,22 @@ export const registerSchema = z
       })
       .refine((d) => d <= new Date(), {
         message: "La data non può essere nel futuro",
-      }),
+      })
+      .refine(
+        (d) => {
+          const today = new Date();
+          const age = today.getFullYear() - d.getFullYear();
+          const monthDiff = today.getMonth() - d.getMonth();
+          const dayDiff = today.getDate() - d.getDate();
+
+          // Calculate exact age considering month and day
+          const exactAge = age - (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? 1 : 0);
+          return exactAge >= 18;
+        },
+        {
+          message: "Devi avere almeno 18 anni per registrarti",
+        }
+      ),
 
     sesso: z.enum(sessoOptions, { message: "Seleziona il sesso" }),
     email: z.string().email("Email non valida"),

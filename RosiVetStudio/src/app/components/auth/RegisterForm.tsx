@@ -12,7 +12,13 @@ type RegisterFormValues = Omit<RegisterValues, "dataNascita"> & {
   dataNascita: Date | null;
 };
 
-export default function RegisterForm({ onSubmit }: { onSubmit: (values: RegisterValues) => void }) {
+export default function RegisterForm({
+  onSubmit,
+  loading = false,
+}: {
+  onSubmit: (values: RegisterValues) => void;
+  loading?: boolean;
+}) {
   const form = useForm<RegisterFormValues>({
     initialValues: {
       nome: "",
@@ -78,7 +84,14 @@ export default function RegisterForm({ onSubmit }: { onSubmit: (values: Register
         />
         <PasswordInput label="Password" required withAsterisk {...form.getInputProps("password")} />
 
-        <Button type="submit" variant="filled" color="rgba(63, 140, 133, 1)" radius="xl">
+        <Button
+          type="submit"
+          variant="filled"
+          color="rgba(63, 140, 133, 1)"
+          radius="xl"
+          loading={loading}
+          disabled={loading}
+        >
           Registrati
         </Button>
 
