@@ -47,9 +47,12 @@ export default function AnimalAddForm({ onAdd }: { onAdd: (v: AnimalFormValues) 
             data={[
               { value: "cane", label: "Cane" },
               { value: "gatto", label: "Gatto" },
-              { value: "esotico", label: "Esotico" },
-              { value: "topo", label: "Topo" },
-              { value: "cincillà", label: "Cincillà" },
+              { value: "coniglio", label: "Coniglio" },
+              { value: "roditore", label: "Roditore" },
+              { value: "uccello", label: "Uccello" },
+              { value: "rettile", label: "Rettile" },
+              { value: "anfibio", label: "Anfibio" },
+              { value: "pesce", label: "Pesce" },
               { value: "altro", label: "Altro" },
             ]}
             {...form.getInputProps("tipo")}

@@ -13,17 +13,16 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "My App",
+  title: "Rosita VetStudio",
   description: "Something great is coming soon!",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <body className={roboto.className}>
+      <body className={`${roboto.className}`}>
         <Providers>
           {/* <NavbarClient /> */}
-          <div className="h-15 sm:h-20"></div>
           {children}
         </Providers>
         <SpeedInsights />

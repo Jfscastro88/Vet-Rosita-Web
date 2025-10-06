@@ -6,8 +6,7 @@ import type { RegisterValues } from "@/lib/validators/auth";
 
 export default function RegisterPage() {
   function onSubmit(values: RegisterValues) {
-    console.log("Register values", values);
-    alert("Registrazione inviata (demo)");
+    // TODO: integra con supabase.auth.signUp
   }
   return (
     <AuthCard title="Registrazione">

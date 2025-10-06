@@ -22,7 +22,16 @@ export type AnimalInsert = {
   nome: string;
   eta?: number | null;
   sesso?: "f" | "m" | "n";
-  tipo?: "cane" | "gatto" | "uccello" | "rettile" | "roditore" | "esotico" | "altro";
+  tipo?:
+    | "cane"
+    | "gatto"
+    | "coniglio"
+    | "roditore"
+    | "uccello"
+    | "rettile"
+    | "anfibio"
+    | "pesce"
+    | "altro";
   altro?: string | null;
 };
 
@@ -31,5 +40,14 @@ export type Animal = AnimalInsert & {
   created_at: string;
   updated_at: string;
   sesso: "f" | "m" | "n";
-  tipo: "cane" | "gatto" | "uccello" | "rettile" | "roditore" | "esotico" | "altro";
+  tipo:
+    | "cane"
+    | "gatto"
+    | "coniglio"
+    | "roditore"
+    | "uccello"
+    | "rettile"
+    | "anfibio"
+    | "pesce"
+    | "altro";
 };

@@ -29,84 +29,8 @@ type Client = {
   hasAccount: boolean;
 };
 
-// ---- Mock data (demo) ----
-const MOCK: Client[] = [
-  {
-    id: 1,
-    iscrizione: "A-1001",
-    cognome: "Rossi",
-    telefono: "+39 333 111 2222",
-    email: "anna.rossi@example.com",
-    hasAccount: true,
-  },
-  {
-    id: 2,
-    iscrizione: "A-1002",
-    cognome: "Bianchi",
-    telefono: "+39 339 555 8888",
-    hasAccount: false,
-  },
-  {
-    id: 3,
-    iscrizione: "B-2301",
-    cognome: "Verdi",
-    telefono: "+39 320 777 9999",
-    email: "marco.verdi@example.com",
-    hasAccount: true,
-  },
-  { id: 4, iscrizione: "C-9920", cognome: "Neri", telefono: "+39 345 000 1234", hasAccount: false },
-  {
-    id: 5,
-    iscrizione: "D-1100",
-    cognome: "Esposito",
-    telefono: "+39 328 111 2233",
-    email: "luca.esposito@example.com",
-    hasAccount: true,
-  },
-  {
-    id: 6,
-    iscrizione: "D-1101",
-    cognome: "Romano",
-    telefono: "+39 329 444 5566",
-    email: "giulia.romano@example.com",
-    hasAccount: true,
-  },
-  {
-    id: 7,
-    iscrizione: "E-4500",
-    cognome: "Colombo",
-    telefono: "+39 331 777 8899",
-    email: "paolo.colombo@example.com",
-    hasAccount: true,
-  },
-  {
-    id: 8,
-    iscrizione: "F-2205",
-    cognome: "Ricci",
-    telefono: "+39 334 222 3344",
-    email: "sara.ricci@example.com",
-    hasAccount: true,
-  },
-  {
-    id: 9,
-    iscrizione: "F-2206",
-    cognome: "Marino",
-    telefono: "+39 335 555 6677",
-    email: "andrea.marino@example.com",
-    hasAccount: true,
-  },
-  {
-    id: 10,
-    iscrizione: "G-3301",
-    cognome: "Greco",
-    telefono: "+39 336 888 9900",
-    email: "francesca.greco@example.com",
-    hasAccount: true,
-  },
-];
-
 function AdminDashboardContent() {
-  const [data, setData] = React.useState<Client[]>(MOCK);
+  const [data, setData] = React.useState<Client[]>([]);
   const [page, setPage] = React.useState(1);
   const [pageSize, setPageSize] = React.useState(10);
   const [search, setSearch] = React.useState("");
@@ -293,9 +217,4 @@ export default function AdminDashboard() {
       <AdminDashboardContent />
     </Suspense>
   );
-}
-
-// --- Dev-only smoke test ---
-if (process.env.NODE_ENV !== "production") {
-  console.assert(Array.isArray(MOCK) && MOCK.length > 0, "[test] mock clients presenti");
 }

@@ -24,7 +24,16 @@ export default function AnimalEditModal({
 
   React.useEffect(() => {
     if (!opened || !animal) return;
-    const isPreset = ["cane", "gatto", "esotico", "topo", "cincillà"].includes(animal.tipo);
+    const isPreset = [
+      "cane",
+      "gatto",
+      "coniglio",
+      "roditore",
+      "uccello",
+      "rettile",
+      "anfibio",
+      "pesce",
+    ].includes(animal.tipo);
     form.setValues({
       nome: animal.nome,
       eta: animal.eta,
@@ -65,9 +74,12 @@ export default function AnimalEditModal({
             data={[
               { value: "cane", label: "Cane" },
               { value: "gatto", label: "Gatto" },
-              { value: "esotico", label: "Esotico" },
-              { value: "topo", label: "Topo" },
-              { value: "cincillà", label: "Cincillà" },
+              { value: "coniglio", label: "Coniglio" },
+              { value: "roditore", label: "Roditore" },
+              { value: "uccello", label: "Uccello" },
+              { value: "rettile", label: "Rettile" },
+              { value: "anfibio", label: "Anfibio" },
+              { value: "pesce", label: "Pesce" },
               { value: "altro", label: "Altro" },
             ]}
             {...form.getInputProps("tipo")}

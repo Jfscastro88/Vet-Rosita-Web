@@ -23,29 +23,13 @@ function ClientDetailContent() {
   const params = useParams() as { id?: string };
   const clientId = Number(params?.id ?? 0);
 
-  // ---- Mock dati iniziali (sostituisci con fetch DB) ----
-  const [client, setClient] = React.useState<Client>({
-    id: clientId || 1,
-    iscrizione: "2025-0007",
-    nome: "Giulia",
-    cognome: "Romano",
-    dataNascita: new Date(1992, 4, 12),
-    telefono: "+39 329 444 5566",
-    sesso: "f",
-    email: "giulia.romano@example.com",
-    hasAccount: true,
-  });
-
-  const [animals, setAnimals] = React.useState<Animal[]>([
-    { id: uid(), nome: "Vicky", eta: 3, sesso: "f", tipo: "gatto" },
-    { id: uid(), nome: "Toto", eta: 1, sesso: "m", tipo: "topo" },
-  ]);
+  const [client, setClient] = React.useState<Client | null>(null);
+  const [animals, setAnimals] = React.useState<Animal[]>([]);
 
   // ---- Handlers ----
   function handleSaveClient(values: ClientUpdateValues) {
     // preserva l'id (e altri metadati) del client corrente
-    setClient((prev) => ({ ...prev, ...values }));
-    alert("Dati cliente aggiornati (demo)");
+    setClient((prev) => (prev ? { ...prev, ...values } : null));
   }
 
   const [delOpen, setDelOpen] = React.useState(false);
@@ -54,9 +38,8 @@ function ClientDetailContent() {
   }
   function confirmDeleteAccount() {
     // TODO: supabase.auth.admin.deleteUser(userId) + update client
-    setClient((c) => ({ ...c, hasAccount: false, email: undefined }));
+    setClient((c) => (c ? { ...c, hasAccount: false, email: undefined } : null));
     setDelOpen(false);
-    alert("Account eliminato (demo)");
   }
 
   function handleAddAnimal(v: AnimalFormValues) {
@@ -93,6 +76,19 @@ function ClientDetailContent() {
   function removeAnimal(id: string) {
     // TODO: delete DB
     setAnimals((prev) => prev.filter((a) => a.id !== id));
+  }
+
+  if (!client) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900 p-4 pt-24 sm:pt-28 flex items-center justify-center">
+        <Card withBorder radius="lg" shadow="sm" className="max-w-md w-full">
+          <Stack gap="md" align="center">
+            <Loader size="lg" />
+            <Text>Caricamento dettagli cliente...</Text>
+          </Stack>
+        </Card>
+      </div>
+    );
   }
 
   return (

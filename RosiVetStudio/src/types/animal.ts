@@ -3,6 +3,15 @@ export type Animal = {
   nome: string;
   eta: number;
   sesso: "m" | "f" | "n";
-  tipo: "cane" | "gatto" | "esotico" | "topo" | "cincillà" | "altro";
+  tipo:
+    | "cane"
+    | "gatto"
+    | "coniglio"
+    | "roditore"
+    | "uccello"
+    | "rettile"
+    | "anfibio"
+    | "pesce"
+    | "altro";
   altro?: string;
 };

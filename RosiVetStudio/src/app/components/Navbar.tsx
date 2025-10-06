@@ -12,11 +12,13 @@ export type NavbarProps = {
 export default function Navbar({ isAuthenticated, onLogout }: NavbarProps) {
   return (
     <div className="fixed left-1/2 -translate-x-1/2 top-4 z-50 w-[90vw] sm:w-[70vw]">
+      <div className="text-center mb-2"></div>
+
       <Paper
         shadow="md"
         radius="xl"
         withBorder
-        className="mx-auto group transition-all duration-550 ease-out w-[40vw] hover:w-[60vw] max-w-[1000px] min-w-[280px] backdrop-blur bg-white/80 text-gray-900"
+        className="mx-auto group transition-all duration-550 ease-out w-[40vw] hover:w-[60vw] max-w-[1000px] min-w-[280px] backdrop-blur bg-pink-200/80 text-gray-900"
       >
         <nav className="px-3 py-2">
           <Group justify="center" gap="xs" wrap="nowrap">
@@ -68,7 +70,6 @@ export function NavbarClient() {
 
   const handleLogout = React.useCallback(() => {
     // TODO: integra supabase.auth.signOut() o la tua API
-    alert("Logout (demo)");
     setIsAuthenticated(false);
   }, []);
 

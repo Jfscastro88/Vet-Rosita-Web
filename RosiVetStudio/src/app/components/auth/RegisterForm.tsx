@@ -83,7 +83,7 @@ export default function RegisterForm({ onSubmit }: { onSubmit: (values: Register
         </Button>
 
         <Divider label="oppure" labelPosition="center" my="xs" />
-        <GoogleButton onClick={() => alert("Entrar con Google (demo)")} />
+        <GoogleButton onClick={() => {}} />
 
         <div className="text-sm text-center mt-2">
           <Link href="/login" className="text-blue-600 hover:underline">
