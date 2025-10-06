@@ -19,6 +19,7 @@
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.57.4",
     "@tabler/icons-react": "^3.35.0",
+    "@vercel/speed-insights": "^1.2.0",
     "dayjs": "^1.11.18",
     "next": "15.5.3",
     "next-auth": "^4.24.11",
