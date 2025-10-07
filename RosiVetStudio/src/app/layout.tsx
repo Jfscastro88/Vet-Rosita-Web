@@ -11,7 +11,7 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Rosita VetStudio",
-  description: "Something great is coming soon!",
+  description: "Veterinaria esperta in animali esotici e non convenzionali",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
