@@ -19,6 +19,10 @@ export async function loginUser(
   credentials: LoginValues
 ): Promise<{ user: AuthUser | null; error: AuthError | null }> {
   try {
+    if (!supabase) {
+      return { user: null, error: { message: "Supabase client not initialized" } };
+    }
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email: credentials.email,
       password: credentials.password,
@@ -66,6 +70,10 @@ export async function registerUser(
   userData: RegisterValues
 ): Promise<{ user: AuthUser | null; error: AuthError | null }> {
   try {
+    if (!supabase) {
+      return { user: null, error: { message: "Supabase client not initialized" } };
+    }
+
     // First, sign up with Supabase Auth
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: userData.email,
@@ -132,6 +140,10 @@ export async function registerUser(
 // Logout function
 export async function logoutUser(): Promise<{ error: AuthError | null }> {
   try {
+    if (!supabase) {
+      return { error: { message: "Supabase client not initialized" } };
+    }
+
     const { error } = await supabase.auth.signOut();
     return { error: error ? { message: error.message } : null };
   } catch (error) {
@@ -145,6 +157,10 @@ export async function getCurrentUser(): Promise<{
   error: AuthError | null;
 }> {
   try {
+    if (!supabase) {
+      return { user: null, error: { message: "Supabase client not initialized" } };
+    }
+
     const {
       data: { user: authUser },
     } = await supabase.auth.getUser();
@@ -185,6 +201,10 @@ export async function getCurrentUser(): Promise<{
 // Google OAuth login
 export async function loginWithGoogle(): Promise<{ error: AuthError | null }> {
   try {
+    if (!supabase) {
+      return { error: { message: "Supabase client not initialized" } };
+    }
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
