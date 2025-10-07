@@ -80,26 +80,33 @@ export async function registerUser(
       return { user: null, error: { message: "Registration failed" } };
     }
 
-    // Create user profile in our users table
-    const { data: userProfile, error: profileError } = await supabase
-      .from("users")
-      .insert({
-        id: authData.user.id,
-        email: userData.email,
-        nome: userData.nome,
-        cognome: userData.cognome,
-        data_nascita: userData.dataNascita.toISOString().split("T")[0],
-        sesso: userData.sesso,
-        role: "user", // Default role for new users
-      })
-      .select("id, email, nome, cognome, role")
-      .single();
+    // Wait a moment for the auth session to be established
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Create user profile using the secure function
+    const { data: userProfile, error: profileError } = await supabase.rpc("create_user_profile", {
+      user_id: authData.user.id,
+      user_email: userData.email,
+      user_nome: userData.nome,
+      user_cognome: userData.cognome,
+      user_data_nascita: userData.dataNascita.toISOString().split("T")[0],
+      user_sesso: userData.sesso,
+      user_role: "user",
+    });
 
     if (profileError) {
       console.error("Profile creation error:", profileError);
       return {
         user: null,
         error: { message: `Failed to create user profile: ${profileError.message}` },
+      };
+    }
+
+    // Check if the function returned an error
+    if (userProfile && userProfile.error) {
+      return {
+        user: null,
+        error: { message: `Failed to create user profile: ${userProfile.message}` },
       };
     }
 

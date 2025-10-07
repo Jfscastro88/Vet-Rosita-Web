@@ -11,10 +11,10 @@
     "build:prod": "NODE_ENV=production next build"
   },
   "dependencies": {
-    "@mantine/core": "^8.3.1",
-    "@mantine/dates": "^8.3.1",
-    "@mantine/form": "^8.3.1",
-    "@mantine/hooks": "^8.3.1",
+    "@mantine/core": "^8.3.3",
+    "@mantine/dates": "^8.3.3",
+    "@mantine/form": "^8.3.3",
+    "@mantine/hooks": "^8.3.3",
     "@mantine/notifications": "^8.3.3",
     "@next-auth/supabase-adapter": "^0.2.1",
     "@supabase/ssr": "^0.7.0",
