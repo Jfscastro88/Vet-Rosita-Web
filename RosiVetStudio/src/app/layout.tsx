@@ -1,9 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import Providers from "./providers";
-import { NavbarClient } from "./components/Navbar";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -20,13 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <body className={`${roboto.className}`}>
-        <Providers>
-          {/* <NavbarClient /> */}
-          {children}
-        </Providers>
-        <SpeedInsights />
-      </body>
+      <body className={`${roboto.className}`}>{children}</body>
     </html>
   );
 }

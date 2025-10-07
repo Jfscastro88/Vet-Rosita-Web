@@ -17,7 +17,7 @@ export default function HomePage() {
           />
         </div>
         <h1 className="text-center font-extrabold tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl px-4">
-          Rosita Semenza
+          Dott.ssa Rosita Semenza
         </h1>
         <h2 className="text-center font-bold tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4">
           Veterinaria esperta in animali esotici e non convenzionali
