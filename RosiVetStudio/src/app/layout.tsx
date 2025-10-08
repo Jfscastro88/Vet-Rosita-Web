@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -19,7 +21,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="it" suppressHydrationWarning>
       <body className={`${roboto.className}`} suppressHydrationWarning>
-        {children}
+        <MantineProvider>
+          <Notifications />
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
