@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import rosiImage from "@/assets/Rosi-PNG.png";
+import rosiImage from "@/assets/images/Rosi-PNG.png";
 
 export default function HomePage() {
   return (
