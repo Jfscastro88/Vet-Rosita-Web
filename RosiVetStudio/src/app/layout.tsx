@@ -7,6 +7,7 @@ const roboto = Roboto({
   weight: ["400", "700"], // regular + bold
   display: "swap", // Optimize font loading
   preload: true,
+  variable: "--font-roboto", // CSS variable for consistent class names
 });
 
 export const metadata: Metadata = {
@@ -16,8 +17,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it">
-      <body className={`${roboto.className}`}>{children}</body>
+    <html lang="it" suppressHydrationWarning>
+      <body className={`${roboto.className}`} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
