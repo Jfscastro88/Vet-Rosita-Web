@@ -1,15 +1,19 @@
-import "./globals.css";
+// app/layout.tsx (RootLayout)
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css"; // keep it global (not per-component)
+import "./globals.css"; // your styles last
+
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "700"], // regular + bold
-  display: "swap", // Optimize font loading
+  weight: ["400", "700"],
+  display: "swap",
   preload: true,
-  variable: "--font-roboto", // CSS variable for consistent class names
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -20,8 +24,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" suppressHydrationWarning>
-      <body className={`${roboto.className}`} suppressHydrationWarning>
-        <MantineProvider>
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body className={roboto.className} suppressHydrationWarning>
+        <MantineProvider defaultColorScheme="light">
           <Notifications />
           {children}
         </MantineProvider>

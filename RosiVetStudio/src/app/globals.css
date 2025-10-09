@@ -1,11 +1,19 @@
+/* globals.css */
+
+/* Mantine styles first (layered) */
+@import "@mantine/core/styles.layer.css";
+@import "@mantine/dates/styles.layer.css";
+@import "@mantine/notifications/styles.layer.css";
+
+/* Then Tailwind v4 */
 @import "tailwindcss";
-@tailwind utilities;
 
+/* Light defaults and dark fallback */
 :root {
-  --background: #fce7f3;
-  --foreground: #171717;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  color-scheme: light dark;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -13,25 +21,27 @@
   }
 }
 
+/* Keep it simple; do not force colors inside components */
 html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  /* Performance optimizations */
+  font-family: var(--font-roboto), system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
 }
 
-/* Optimize animations for better performance */
-* {
-  will-change: auto;
+/* If native number/select arrows were lost by resets, re-enable: */
+input[type="number"] {
+  appearance: auto;
+  -moz-appearance: auto;
 }
-
-/* Optimize transitions */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: auto;
+}
+select {
+  appearance: auto;
+  background-image: initial;
 }

@@ -17,6 +17,7 @@ export const bookingSchema = z.object({
   farmaci: z.string().optional(),
   // privacy
   consensoGdpr: z.boolean(),
+  marketingOptIn: z.boolean().optional(),
 });
 
 export type BookingFormData = z.infer<typeof bookingSchema>;

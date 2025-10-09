@@ -23,21 +23,18 @@ export default function HomePage() {
         <h2 className="text-center font-bold tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4">
           Veterinaria esperta in animali esotici e non convenzionali
         </h2>
-        <h3 className="text-center font-bold tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-lg sm:text-xl md:text-2xl lg:text-3xl px-4">
-          Qualcosa di grande sta per arrivare!
-        </h3>
+        <section className="flex flex-col items-center justify-center text-center p-8">
+          <h1 className="text-4xl font-bold mb-4">
+            Cura veterinaria con attenzione e professionalità
+          </h1>
+          <p className="text-gray-600 mb-6 max-w-xl">
+            Prenota una visita per il tuo animale domestico in pochi minuti.
+          </p>
+          <Link href="/book" className="px-5 py-3 rounded bg-teal-600 text-white">
+            Prenota una visita
+          </Link>
+        </section>
       </div>
-      <section className="flex flex-col items-center justify-center min-h-[60vh] text-center p-8">
-        <h1 className="text-4xl font-bold mb-4">
-          Cura veterinaria con attenzione e professionalità
-        </h1>
-        <p className="text-gray-600 mb-6 max-w-xl">
-          Prenota una visita per il tuo animale domestico in pochi minuti.
-        </p>
-        <Link href="/book" className="px-5 py-3 rounded bg-teal-600 text-white">
-          Prenota una visita
-        </Link>
-      </section>
     </div>
   );
 }
