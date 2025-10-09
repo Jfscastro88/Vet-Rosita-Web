@@ -1,5 +1,3 @@
-import { BlockTimeManager } from "@/components/admin/BlockTimeManager";
-
 export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -8,12 +6,10 @@ export default function AdminPage() {
           <h1 className="text-3xl font-bold text-center text-gray-900">Dashboard Amministratore</h1>
 
           <div className="bg-white shadow-sm rounded-lg border">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900">Gestione Orari</h2>
+            <div className="px-6 py-4 border-b border-gray-300">
+              <h2 className="text-xl font-semibold text-gray-900 text-center">Gestione Orari</h2>
             </div>
-            <div className="p-6">
-              <BlockTimeManager />
-            </div>
+            <div className="p-6"></div>
           </div>
         </div>
       </div>

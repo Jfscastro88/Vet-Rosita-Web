@@ -1,16 +1,10 @@
+import AdminNavbar from "@/components/admin/AdminNavbar";
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-gray-900">RosiVetStudio Admin</h1>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <main className="flex-1 flex items-center justify-center py-6">
+    <div className="min-h-screen bg-gray-50">
+      <AdminNavbar />
+      <main className="py-6">
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
       </main>
     </div>
