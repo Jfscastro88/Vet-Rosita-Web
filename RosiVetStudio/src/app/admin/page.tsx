@@ -1,3 +1,5 @@
+import SlotCleanup from "@/components/admin/SlotCleanup";
+
 export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -9,7 +11,9 @@ export default function AdminPage() {
             <div className="px-6 py-4 border-b border-gray-300">
               <h2 className="text-xl font-semibold text-gray-900 text-center">Gestione Orari</h2>
             </div>
-            <div className="p-6"></div>
+            <div className="p-6">
+              <SlotCleanup />
+            </div>
           </div>
         </div>
       </div>

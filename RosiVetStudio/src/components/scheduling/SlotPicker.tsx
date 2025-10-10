@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button, Paper, Stack, Title, Text, Grid, GridCol, Badge, Group } from "@mantine/core";
 import { IconCalendar, IconClock, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { getSlotsInRange } from "@/app/actions/getSlots";
+import { startOfDay, endOfDay } from "date-fns";
 
 export type Slot = {
   id: string;
@@ -27,11 +28,20 @@ export function SlotPicker({ selectedSlotId, onSlotSelect, refreshTrigger }: Pro
   const loadSlots = async (date: string) => {
     setLoading(true);
     try {
-      const startOfDay = new Date(date + "T00:00:00.000Z").toISOString();
-      const endOfDay = new Date(date + "T23:59:59.999Z").toISOString();
+      const d = new Date(date); // date = "YYYY-MM-DD"
+      const startISO = startOfDay(d).toISOString();
+      const endISO = endOfDay(d).toISOString();
 
-      const availableSlots = await getSlotsInRange(startOfDay, endOfDay);
-      setSlots(availableSlots);
+      const availableSlots = await getSlotsInRange(startISO, endISO);
+
+      // Additional client-side filtering to ensure no past slots
+      const now = new Date();
+      const filteredSlots = availableSlots.filter((slot) => {
+        const slotTime = new Date(slot.starts_at);
+        return slotTime > now;
+      });
+
+      setSlots(filteredSlots);
     } catch (error) {
       console.error("Error loading slots:", error);
       setSlots([]);
@@ -202,7 +212,17 @@ export function SlotPicker({ selectedSlotId, onSlotSelect, refreshTrigger }: Pro
               ) : slots.length === 0 ? (
                 <div className="text-center py-8">
                   <Text size="sm" c="dimmed">
-                    Nessun orario disponibile per questa data
+                    {(() => {
+                      const selectedDateObj = new Date(selectedDate);
+                      const today = new Date();
+                      const isToday = selectedDateObj.toDateString() === today.toDateString();
+
+                      if (isToday) {
+                        return "Non ci sono più orari disponibili per oggi. Scegli una data futura.";
+                      } else {
+                        return "Nessun orario disponibile per questa data";
+                      }
+                    })()}
                   </Text>
                   <Button variant="light" size="sm" mt="sm" onClick={() => loadSlots(selectedDate)}>
                     Ricarica
