@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import rosiImage from "@/assets/images/logo/Rosi-PNG.png";
 import Link from "next/link";
+import { Button } from "@mantine/core";
 
 export default function HomePage() {
   return (
@@ -30,9 +31,9 @@ export default function HomePage() {
           <p className="text-gray-600 mb-6 max-w-xl">
             Prenota una visita per il tuo animale domestico in pochi minuti.
           </p>
-          <Link href="/book" className="px-5 py-3 rounded bg-teal-600 text-white">
+          <Button component={Link} href="/book" variant="light" color="red" size="md" radius="xl">
             Prenota una visita
-          </Link>
+          </Button>
         </section>
       </div>
     </div>
