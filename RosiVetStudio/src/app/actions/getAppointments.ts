@@ -35,10 +35,11 @@ export type AppointmentFilters = {
 
 export async function getAppointments(filters: AppointmentFilters = {}) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  const supabase = createClient(url, anon);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-  // ── Base select with optional joins (since related tables might be empty)
+  const supabase = createClient(url, serviceKey || anonKey);
+
   let query = supabase.from("appointments").select(`
       id,
       scheduled_at,
@@ -46,18 +47,17 @@ export async function getAppointments(filters: AppointmentFilters = {}) {
       created_at,
       client_id,
       animal_id,
-      clients(
+      clients!inner(
         first_name,
         last_name,
         phone,
         email,
         birth_date
       ),
-      animals(
+      animals!inner(
         name,
         type,
-        age_years,
-        notes
+        age_years
       )
     `);
 
@@ -127,17 +127,17 @@ export async function getAppointments(filters: AppointmentFilters = {}) {
         ends_at: end,
         status: row.status || "pending", // Default to pending if status is null/undefined
 
-        client_first_name:
-          row.clients?.first_name ?? `Cliente ${row.client_id?.slice(-4) || "N/A"}`,
-        client_last_name: row.clients?.last_name ?? "N/A",
-        client_phone: row.clients?.phone ?? "N/A",
-        client_email: row.clients?.email ?? "N/A",
-        client_birth_date: row.clients?.birth_date ?? null,
+        // Use actual joined data
+        client_first_name: row.clients?.first_name || "N/A",
+        client_last_name: row.clients?.last_name || "N/A",
+        client_phone: row.clients?.phone || "N/A",
+        client_email: row.clients?.email || "N/A",
+        client_birth_date: row.clients?.birth_date,
 
-        animal_name: row.animals?.name ?? `Animale ${row.animal_id?.slice(-4) || "N/A"}`,
-        animal_type: row.animals?.type ?? "N/A",
-        animal_age_years: row.animals?.age_years ?? null,
-        notes: row.animals?.notes ?? null,
+        animal_name: row.animals?.name || "N/A",
+        animal_type: row.animals?.type || "N/A",
+        animal_age_years: row.animals?.age_years,
+        notes: undefined,
 
         created_at: row.created_at,
         updated_at: row.created_at,
@@ -149,13 +149,13 @@ export async function getAppointments(filters: AppointmentFilters = {}) {
 
 export async function getAppointmentStats() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  const supabase = createClient(url, anon);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-  const { data, error } = await supabase
-    .from("appointments")
-    .select("status")
-    .gte("scheduled_at", new Date().toISOString());
+  // Use service key if available, otherwise fall back to anon key
+  const supabase = createClient(url, serviceKey || anonKey);
+
+  const { data, error } = await supabase.from("appointments").select("status");
 
   if (error) {
     console.error("Error fetching appointment stats:", error);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { format } from "date-fns";
 import { it } from "date-fns/locale";
 import {
@@ -32,6 +32,7 @@ import {
   IconTrash,
   IconEye,
   IconPaw,
+  IconX,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { getPets, getPetStats, type Pet, type PetFilters } from "@/app/actions/getPets";
@@ -39,9 +40,12 @@ import { getPets, getPetStats, type Pet, type PetFilters } from "@/app/actions/g
 const animalIcons = {
   cane: "🐕",
   gatto: "🐱",
+  uccello: "🐦",
+  rettili: "🦎",
+  roditore: "🐹",
+  altro: "🐾",
   coniglio: "🐰",
   criceto: "🐹",
-  uccello: "🐦",
   pesce: "🐠",
   tartaruga: "🐢",
   default: "🐾",
@@ -50,9 +54,12 @@ const animalIcons = {
 const animalColors = {
   cane: "blue",
   gatto: "orange",
+  uccello: "cyan",
+  rettili: "green",
+  roditore: "yellow",
+  altro: "gray",
   coniglio: "pink",
   criceto: "yellow",
-  uccello: "cyan",
   pesce: "teal",
   tartaruga: "green",
   default: "gray",
@@ -62,6 +69,7 @@ export default function PetsTable() {
   const [pets, setPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [filters, setFilters] = useState<PetFilters>({
     sort_by: "name",
     sort_order: "asc",
@@ -70,13 +78,16 @@ export default function PetsTable() {
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
   const [viewModalOpened, { open: openViewModal, close: closeViewModal }] = useDisclosure(false);
 
-  const fetchPets = async () => {
+  const fetchPets = useCallback(async () => {
     setLoading(true);
     try {
       const searchFilters: PetFilters = {
         ...filters,
-        search: searchTerm || undefined,
+        search: debouncedSearchTerm || undefined,
       };
+
+      console.log("Search filters being sent:", searchFilters);
+      console.log("Debounced search term:", debouncedSearchTerm);
 
       const [petsResult, statsResult] = await Promise.all([getPets(searchFilters), getPetStats()]);
 
@@ -92,11 +103,20 @@ export default function PetsTable() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters, debouncedSearchTerm]);
+
+  // Debounce search term
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   useEffect(() => {
     fetchPets();
-  }, [filters, searchTerm]);
+  }, [fetchPets]);
 
   const handleViewPet = (pet: Pet) => {
     setSelectedPet(pet);
@@ -136,25 +156,23 @@ export default function PetsTable() {
             </Text>
           </Paper>
         </GridCol>
-        {Object.entries(stats.by_type)
-          .slice(0, 3)
-          .map(([type, count]) => (
-            <GridCol key={type} span={{ base: 12, sm: 6, md: 3 }}>
-              <Paper p="md" withBorder>
-                <Group gap="xs">
-                  <Text size="lg">{getAnimalIcon(type)}</Text>
-                  <div>
-                    <Text size="sm" c="dimmed" tt="capitalize">
-                      {type}s
-                    </Text>
-                    <Text size="xl" fw={700} c={getAnimalColor(type)}>
-                      {count}
-                    </Text>
-                  </div>
-                </Group>
-              </Paper>
-            </GridCol>
-          ))}
+        {Object.entries(stats.by_type).map(([type, count]) => (
+          <GridCol key={type} span={{ base: 12, sm: 6, md: 3 }}>
+            <Paper p="md" withBorder>
+              <Group gap="xs">
+                <Text size="lg">{getAnimalIcon(type)}</Text>
+                <div>
+                  <Text size="sm" c="dimmed" tt="capitalize">
+                    {type}s
+                  </Text>
+                  <Text size="xl" fw={700} c={getAnimalColor(type)}>
+                    {count}
+                  </Text>
+                </div>
+              </Group>
+            </Paper>
+          </GridCol>
+        ))}
       </Grid>
 
       {/* Filters */}
@@ -164,49 +182,34 @@ export default function PetsTable() {
           <Grid>
             <GridCol span={{ base: 12, md: 4 }}>
               <TextInput
-                placeholder="Cerca per nome, tipo, proprietario..."
+                placeholder="Cerca per nome, tipo"
                 leftSection={<IconSearch size={16} />}
                 value={searchTerm}
+                radius="xl"
                 onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </GridCol>
-            <GridCol span={{ base: 12, md: 3 }}>
-              <Select
-                placeholder="Tipo Animale"
-                data={getAnimalTypeOptions()}
-                value={filters.animal_type}
-                onChange={(value) => setFilters((prev) => ({ ...prev, animal_type: value || "" }))}
-                clearable
-              />
-            </GridCol>
-            <GridCol span={{ base: 12, md: 3 }}>
-              <Select
-                placeholder="Ordina per"
-                data={[
-                  { value: "name", label: "Nome" },
-                  { value: "type", label: "Tipo" },
-                  { value: "age", label: "Età" },
-                  { value: "owner", label: "Proprietario" },
-                  { value: "created_at", label: "Data Registrazione" },
-                ]}
-                value={filters.sort_by}
-                onChange={(value) => setFilters((prev) => ({ ...prev, sort_by: value as any }))}
-              />
-            </GridCol>
-            <GridCol span={{ base: 12, md: 2 }}>
-              <Select
-                placeholder="Ordine"
-                data={[
-                  { value: "asc", label: "Crescente" },
-                  { value: "desc", label: "Decrescente" },
-                ]}
-                value={filters.sort_order}
-                onChange={(value) => setFilters((prev) => ({ ...prev, sort_order: value as any }))}
+                rightSection={
+                  loading && searchTerm !== debouncedSearchTerm ? (
+                    <div className="animate-spin w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full" />
+                  ) : searchTerm ? (
+                    <ActionIcon variant="subtle" size="sm" onClick={() => setSearchTerm("")}>
+                      <IconX size={14} />
+                    </ActionIcon>
+                  ) : null
+                }
               />
             </GridCol>
           </Grid>
         </Stack>
       </Paper>
+
+      {/* Search Results Info */}
+      {searchTerm && (
+        <Paper p="sm" withBorder>
+          <Text size="sm" c="dimmed">
+            {loading ? "Ricerca in corso..." : `Trovati ${pets.length} animali per "${searchTerm}"`}
+          </Text>
+        </Paper>
+      )}
 
       {/* Pets Table */}
       <Paper withBorder>

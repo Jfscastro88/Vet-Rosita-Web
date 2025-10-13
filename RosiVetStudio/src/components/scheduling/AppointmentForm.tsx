@@ -67,6 +67,8 @@ export function AppointmentForm({ slotId, onSubmit, loading }: Props) {
             }
           });
         }
+        console.log("Validation errors:", errors);
+        console.log("Current values:", values);
         return errors;
       }
     },
@@ -86,7 +88,7 @@ export function AppointmentForm({ slotId, onSubmit, loading }: Props) {
       consensoGdpr: false,
     },
     validateInputOnBlur: true,
-    validateInputOnChange: false,
+    validateInputOnChange: true,
   });
 
   const canSubmit = useMemo(() => {
@@ -196,6 +198,12 @@ export function AppointmentForm({ slotId, onSubmit, loading }: Props) {
                       popoverProps={{ withinPortal: true }}
                       placeholder="Seleziona data"
                       {...form.getInputProps("dataNascita")}
+                      onChange={(value) => {
+                        if (value) {
+                          form.setFieldValue("dataNascita", value as unknown as Date);
+                          form.validateField("dataNascita");
+                        }
+                      }}
                     />
                   </GridCol>
 
@@ -291,10 +299,15 @@ export function AppointmentForm({ slotId, onSubmit, loading }: Props) {
                     <NumberInput
                       label="Età (anni)"
                       min={0}
+                      max={50}
                       allowDecimal={false}
                       clampBehavior="strict"
                       placeholder="es. 3"
                       {...form.getInputProps("etaAnimale")}
+                      onBlur={() => {
+                        console.log("Blur triggered, validating etaAnimale");
+                        form.validateField("etaAnimale");
+                      }}
                     />
                   </GridCol>
 

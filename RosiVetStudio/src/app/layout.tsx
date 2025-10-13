@@ -4,9 +4,10 @@ import "@mantine/dates/styles.css"; // keep it global (not per-component)
 import "./globals.css"; // your styles last
 
 import type { Metadata } from "next";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript, AppShell } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { Roboto } from "next/font/google";
+import Header from "@/components/layout/Header";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={roboto.className} suppressHydrationWarning>
         <MantineProvider defaultColorScheme="light">
           <Notifications />
-          {children}
+          <AppShell header={{ height: 60 }} padding={0}>
+            <Header />
+            <div style={{ paddingTop: "60px" }}>{children}</div>
+          </AppShell>
         </MantineProvider>
       </body>
     </html>

@@ -24,8 +24,11 @@ export type PetFilters = {
 
 export async function getPets(filters: PetFilters = {}) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  const supabase = createClient(url, anon);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+  // Use service key if available, otherwise fall back to anon key
+  const supabase = createClient(url, serviceKey || anonKey);
 
   let query = supabase.from("animals").select(`
       id,
@@ -48,9 +51,12 @@ export async function getPets(filters: PetFilters = {}) {
   // Apply search filter
   if (filters.search) {
     const searchTerm = `%${filters.search}%`;
-    query = query.or(
-      `name.ilike.${searchTerm},type.ilike.${searchTerm},clients.first_name.ilike.${searchTerm},clients.last_name.ilike.${searchTerm},clients.email.ilike.${searchTerm}`
-    );
+    console.log("Applying search filter:", filters.search, "->", searchTerm);
+    // For now, let's search only in the main table fields
+    // We'll implement client search differently
+    query = query.or(`name.ilike.${searchTerm},type.ilike.${searchTerm}`);
+  } else {
+    console.log("No search filter applied");
   }
 
   // Apply sorting
@@ -76,6 +82,9 @@ export async function getPets(filters: PetFilters = {}) {
     return { ok: false, error: error.message, data: [] };
   }
 
+  console.log("Raw data from Supabase:", data);
+  console.log("Number of pets found:", data?.length || 0);
+
   // Transform the joined data to match the expected Pet interface
   const transformedData =
     data?.map((animal: any) => ({
@@ -88,6 +97,24 @@ export async function getPets(filters: PetFilters = {}) {
       created_at: animal.created_at,
       updated_at: animal.created_at, // animals table doesn't have updated_at, using created_at
     })) || [];
+
+  console.log("Transformed data:", transformedData);
+  console.log("Final number of pets:", transformedData.length);
+
+  // Apply client-side filtering for client information if search is provided
+  let filteredData = transformedData;
+  if (filters.search) {
+    const searchTerm = filters.search.toLowerCase();
+    filteredData = transformedData.filter((pet) => {
+      return (
+        pet.name.toLowerCase().includes(searchTerm) ||
+        pet.type.toLowerCase().includes(searchTerm) ||
+        pet.owner_name.toLowerCase().includes(searchTerm) ||
+        pet.owner_email.toLowerCase().includes(searchTerm)
+      );
+    });
+    console.log("After client-side filtering:", filteredData.length, "pets found");
+  }
 
   // If no pets found in animals table, return empty with helpful message
   if (!transformedData || transformedData.length === 0) {
@@ -114,13 +141,16 @@ export async function getPets(filters: PetFilters = {}) {
     // The time_slots table only contains time slot information, not animal data
   }
 
-  return { ok: true, data: transformedData as Pet[] };
+  return { ok: true, data: filteredData as Pet[] };
 }
 
 export async function getPetStats() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  const supabase = createClient(url, anon);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+  // Use service key if available, otherwise fall back to anon key
+  const supabase = createClient(url, serviceKey || anonKey);
 
   // Try animals table first
   const { data: petsData, error: petsError } = await supabase.from("animals").select("id, type");

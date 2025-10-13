@@ -5,7 +5,15 @@ export const bookingSchema = z
     // persona
     nome: z.string().min(1, "Obbligatorio"),
     cognome: z.string().min(1, "Obbligatorio"),
-    dataNascita: z.date({ message: "Obbligatorio" }),
+    dataNascita: z.date({ message: "Obbligatorio" }).refine((date) => {
+      const today = new Date();
+      const age = today.getFullYear() - date.getFullYear();
+      const monthDiff = today.getMonth() - date.getMonth();
+      const dayDiff = today.getDate() - date.getDate();
+
+      const exactAge = monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age;
+      return exactAge >= 18;
+    }, "Devi avere almeno 18 anni per prenotare"),
     sesso: z.enum(["f", "m", "ncb", "npd"]).optional(),
     telefono: z
       .string()
@@ -23,7 +31,12 @@ export const bookingSchema = z
     // animale
     tipoAnimale: z.string().min(1, "Obbligatorio"),
     nomeAnimale: z.string().min(1, "Obbligatorio"),
-    etaAnimale: z.number().int().nonnegative().optional(),
+    etaAnimale: z
+      .number()
+      .int("L'età deve essere un numero intero")
+      .min(0, "L'età non può essere negativa")
+      .max(50, "L'età massima è 50 anni")
+      .optional(),
     infoParticolari: z.string().optional(),
     farmaci: z.string().optional(),
     // privacy

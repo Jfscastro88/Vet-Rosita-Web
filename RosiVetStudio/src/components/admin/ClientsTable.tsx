@@ -158,35 +158,26 @@ export default function ClientsTable() {
           <Grid>
             <GridCol span={{ base: 12, md: 6 }}>
               <TextInput
+                radius="xl"
                 placeholder="Cerca per nome, email, telefono..."
                 leftSection={<IconSearch size={16} />}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </GridCol>
-            <GridCol span={{ base: 12, md: 3 }}>
+            <GridCol span={{ base: 12, md: 3 }} mt={{ base: "md", md: 0 }}>
               <Select
+                radius="xl"
                 placeholder="Ordina per"
                 data={[
                   { value: "name", label: "Nome" },
                   { value: "email", label: "Email" },
-                  { value: "created_at", label: "Data Registrazione" },
                 ]}
                 value={filters.sort_by}
                 onChange={(value) => setFilters((prev) => ({ ...prev, sort_by: value as any }))}
               />
             </GridCol>
-            <GridCol span={{ base: 12, md: 3 }}>
-              <Select
-                placeholder="Ordine"
-                data={[
-                  { value: "asc", label: "Crescente" },
-                  { value: "desc", label: "Decrescente" },
-                ]}
-                value={filters.sort_order}
-                onChange={(value) => setFilters((prev) => ({ ...prev, sort_order: value as any }))}
-              />
-            </GridCol>
+            <GridCol span={{ base: 12, md: 3 }}></GridCol>
           </Grid>
         </Stack>
       </Paper>
@@ -223,9 +214,6 @@ export default function ClientsTable() {
                     <Stack gap={4}>
                       <Text size="sm" fw={500}>
                         {client.first_name} {client.last_name}
-                      </Text>
-                      <Text size="xs" c="dimmed">
-                        ID: {client.id}
                       </Text>
                     </Stack>
                   </Table.Td>
@@ -285,7 +273,7 @@ export default function ClientsTable() {
             <Paper p="md" withBorder>
               <Stack gap="sm">
                 <Group>
-                  <IconUser size={20} />
+                  <IconUser size={50} />
                   <Text fw={600} size="lg">
                     {selectedClient.first_name} {selectedClient.last_name}
                   </Text>

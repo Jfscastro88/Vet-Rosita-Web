@@ -12,7 +12,6 @@ import {
   ActionIcon,
   Menu,
   Modal,
-  Textarea,
   Select,
   Stack,
   Title,
@@ -23,15 +22,11 @@ import {
 } from "@mantine/core";
 import {
   IconSearch,
-  IconFilter,
-  IconCalendar,
-  IconUser,
   IconDog,
   IconPhone,
   IconMail,
   IconDots,
   IconEdit,
-  IconTrash,
   IconCheck,
   IconX,
 } from "@tabler/icons-react";
@@ -369,13 +364,6 @@ export default function AppointmentsTable() {
                       <Text size="sm" fw={500}>
                         {appointment.client_first_name} {appointment.client_last_name}
                       </Text>
-                      <Text size="xs" c="dimmed">
-                        Nato:{" "}
-                        {appointment.client_birth_date &&
-                          format(new Date(appointment.client_birth_date), "dd/MM/yyyy", {
-                            locale: it,
-                          })}
-                      </Text>
                     </Stack>
                   </Table.Td>
                   <Table.Td>
@@ -386,10 +374,6 @@ export default function AppointmentsTable() {
                           {appointment.animal_name}
                         </Text>
                       </Group>
-                      <Text size="xs" c="dimmed">
-                        {appointment.animal_type}
-                        {appointment.animal_age_years && ` • ${appointment.animal_age_years} anni`}
-                      </Text>
                     </Stack>
                   </Table.Td>
                   <Table.Td>

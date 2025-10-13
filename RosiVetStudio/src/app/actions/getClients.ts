@@ -22,8 +22,11 @@ export type ClientFilters = {
 
 export async function getClients(filters: ClientFilters = {}) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  const supabase = createClient(url, anon);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+  // Use service key if available, otherwise fall back to anon key
+  const supabase = createClient(url, serviceKey || anonKey);
 
   let query = supabase.from("clients").select(`
       id,
