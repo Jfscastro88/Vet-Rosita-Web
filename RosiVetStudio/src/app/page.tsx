@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import rosiImage from "@/assets/Rosi-PNG.png";
+import rosiImageWhite from "@/assets/Rosi-PNG-W.png";
 
 export default function HomePage() {
   return (
@@ -10,13 +11,23 @@ export default function HomePage() {
       <div className="flex flex-col items-center justify-center space-y-6 sm:space-y-8 max-w-4xl mx-auto px-4 sm:px-6">
         {/* Logo */}
         <div className="w-full max-w-2xl h-auto">
+          {/* Light mode logo */}
           <Image
             src={rosiImage}
             alt="RosiVetStudio Logo"
             width={1200}
             height={800}
             priority
-            className="w-full h-auto max-h-[40vh] object-contain"
+            className="w-full h-auto max-h-[40vh] object-contain dark:hidden"
+          />
+          {/* Dark mode logo */}
+          <Image
+            src={rosiImageWhite}
+            alt="RosiVetStudio Logo"
+            width={1200}
+            height={800}
+            priority
+            className="w-full h-auto max-h-[40vh] object-contain hidden dark:block"
           />
         </div>
 
