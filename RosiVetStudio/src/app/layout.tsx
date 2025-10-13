@@ -8,6 +8,7 @@ import { MantineProvider, ColorSchemeScript, AppShell } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { Roboto } from "next/font/google";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,7 +34,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Notifications />
           <AppShell header={{ height: 60 }} padding={0}>
             <Header />
-            <div style={{ paddingTop: "60px" }}>{children}</div>
+            <div
+              style={{
+                paddingTop: "60px",
+                minHeight: "calc(100vh - 60px)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div style={{ flex: 1 }}>{children}</div>
+              <Footer />
+            </div>
           </AppShell>
         </MantineProvider>
       </body>
