@@ -13,7 +13,7 @@ export type Input = {
   animalName: string;
   animalAge?: number;
   notes?: string;
-  // medications?: string; // add if your RPC accepts it
+  medications?: string;
 };
 
 export async function bookAppointment(input: Input) {
@@ -58,6 +58,7 @@ export async function bookAppointment(input: Input) {
     p_animal_type: input.animalType,
     p_animal_age_years: input.animalAge ?? null,
     p_notes: input.notes ?? null,
+    p_medications: input.medications ?? null,
   });
 
   if (error) return { ok: false, error: error.message };

@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { useForm } from "@mantine/form";
 import {
   Button,
-  Checkbox,
   Divider,
   Fieldset,
   Grid,
@@ -40,20 +39,11 @@ export type Props = {
   loading?: boolean;
 };
 
-/**
- * Completely refreshed UI using Mantine patterns (Fieldset, Switch, autosize Textarea)
- * + Tailwind for rounded corners and spacing.
- */
 export function AppointmentForm({ slotId, onSubmit, loading }: Props) {
-  // Format phone number as user types
   const formatPhoneNumber = (value: string) => {
-    // Remove all non-digit characters
     const cleaned = value.replace(/\D/g, "");
-
-    // Limit to 10 digits
     const limited = cleaned.slice(0, 10);
 
-    // Format as XXX XXX XXXX
     if (limited.length <= 3) {
       return limited;
     } else if (limited.length <= 6) {
