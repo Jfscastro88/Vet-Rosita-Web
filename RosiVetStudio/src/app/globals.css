@@ -13,6 +13,11 @@
   }
 }
 
+/* Dark mode support */
+.dark {
+  color-scheme: dark;
+}
+
 html,
 body {
   background: var(--background);
@@ -23,6 +28,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  /* Mobile optimizations */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
 }
 
 /* Optimize animations for better performance */
@@ -34,4 +44,36 @@ body {
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Improve touch targets */
+  a,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better text rendering on mobile */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Prevent zoom on input focus */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Dark mode improvements for mobile */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  /* Ensure good contrast on mobile dark mode */
+  .dark {
+    background-color: #0a0a0a;
+    color: #ededed;
+  }
 }

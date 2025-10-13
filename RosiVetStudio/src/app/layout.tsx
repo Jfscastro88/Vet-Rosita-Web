@@ -12,6 +12,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Rosita VetStudio",
   description: "Veterinaria esperta in animali esotici e non convenzionali",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
