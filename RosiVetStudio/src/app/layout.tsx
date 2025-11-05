@@ -1,6 +1,9 @@
 import "./globals.css";
+import "@mantine/core/styles.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { ColorSchemeScript } from "@mantine/core";
+import { Providers } from "./providers";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -18,7 +21,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <body className={`${roboto.className}`}>{children}</body>
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body className={`${roboto.className}`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
