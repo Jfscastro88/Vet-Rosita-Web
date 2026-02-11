@@ -49,33 +49,35 @@ export default function Footer() {
           <Text size="xs" style={{ color: "#2F3A2F" }} className="text-center">
             Veterinaria esperta in animali esotici e non convenzionali
           </Text>
-          <Anchor
-            component={Link}
-            href="/privacy"
-            style={{
-              textDecoration: "none",
-              color: "#2F3A2F",
-            }}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <Text size="xs" style={{ color: "#2F3A2F" }}>
-              Informativa sulla Privacy
-            </Text>
-          </Anchor>
-          <Anchor
-            component={Link}
-            href="https://www.linkedin.com/in/jfscastro88"
-            target="_blank"
-            style={{
-              textDecoration: "none",
-              color: "#2F3A2F",
-            }}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <Text size="xs" style={{ color: "#2F3A2F" }}>
-              Jfscastro
-            </Text>
-          </Anchor>
+          <Group gap="xl" justify="center" wrap="wrap">
+            <Anchor
+              component={Link}
+              href="/privacy"
+              style={{
+                textDecoration: "none",
+                color: "#2F3A2F",
+              }}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Text size="xs" style={{ color: "#2F3A2F" }}>
+                Informativa sulla Privacy
+              </Text>
+            </Anchor>
+            <Anchor
+              component={Link}
+              href="https://www.linkedin.com/in/jfscastro88"
+              target="_blank"
+              style={{
+                textDecoration: "none",
+                color: "#2F3A2F",
+              }}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Text size="xs" style={{ color: "#2F3A2F" }}>
+                Jfscastro
+              </Text>
+            </Anchor>
+          </Group>
         </Stack>
       </Container>
     </footer>

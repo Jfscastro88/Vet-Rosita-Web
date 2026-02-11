@@ -178,7 +178,7 @@ export default function LocationContact() {
                   <Text fw={600} size="sm" style={{ color: textMuted }}>
                     Social
                   </Text>
-                  <Stack gap={4}>
+                  <Stack gap={4} align="center">
                     <Anchor
                       href={instagramUrl}
                       target="_blank"
@@ -199,7 +199,7 @@ export default function LocationContact() {
                       style={{ color: textPrimary }}
                       className="hover:underline"
                     >
-                      BalDog Training
+                      Baldog DogTrainer
                     </Anchor>
                   </Stack>
                 </Stack>

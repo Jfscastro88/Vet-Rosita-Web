@@ -3,24 +3,35 @@
 
 :root {
   /* Clean & Veterinary Color Palette */
-  --background: #F4F6F2; /* Soft Cream */
-  --foreground: #2F3A2F; /* Dark Olive */
+  --background: #f4f6f2; /* Soft Cream */
+  --foreground: #2f3a2f; /* Dark Olive */
   --primary: #869684; /* Sage Green */
-  --accent: #DADDD7; /* Light Gray */
+  --accent: #daddd7; /* Light Gray */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #2F3A2F; /* Dark Olive for dark mode */
-    --foreground: #F4F6F2; /* Soft Cream for text in dark mode */
+    --background: #2f3a2f; /* Dark Olive for dark mode */
+    --foreground: #f4f6f2; /* Soft Cream for text in dark mode */
     --primary: #869684; /* Sage Green */
-    --accent: #DADDD7; /* Light Gray */
+    --accent: #daddd7; /* Light Gray */
   }
 }
 
 /* Dark mode support */
 .dark {
   color-scheme: dark;
+}
+
+/* Reserve space for fixed header when scrolling to anchor sections */
+html {
+  scroll-padding-top: 35px; /* mobile */
+}
+
+#about,
+#services,
+#contact {
+  scroll-margin-top: 30px; /* desktop */
 }
 
 html,

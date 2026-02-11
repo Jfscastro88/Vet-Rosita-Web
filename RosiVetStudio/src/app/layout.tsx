@@ -98,7 +98,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it">
+    <html lang="it" suppressHydrationWarning>
       <head>
         <ColorSchemeScript />
         <script
@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${roboto.className} flex flex-col min-h-screen`}>
+      <body className={`${roboto.className} flex flex-col min-h-screen`} suppressHydrationWarning>
         <Providers>
           <Header />
           <main className="flex-1">{children}</main>
