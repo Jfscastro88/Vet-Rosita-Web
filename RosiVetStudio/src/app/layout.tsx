@@ -6,13 +6,7 @@ import { ColorSchemeScript } from "@mantine/core";
 import { Providers } from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import {
-  SITE_URL,
-  SITE_NAME,
-  SITE_DESCRIPTION,
-  CONTACT,
-  OPENING_HOURS_JSON_LD,
-} from "@/lib/site";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, CONTACT, OPENING_HOURS_JSON_LD } from "@/lib/site";
 
 const roboto = Roboto({
   subsets: ["latin"],

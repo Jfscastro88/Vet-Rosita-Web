@@ -1,9 +1,14 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container, Group, Stack, Text } from "@mantine/core";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -31,50 +36,85 @@ export default function Header() {
     >
       <Container size="xl" py="md">
         <Group justify="space-between" align="center" gap="md">
-          <Stack
-            gap={0}
-            style={{ color: "#ffffff", cursor: "pointer" }}
-            onClick={scrollToTop}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && scrollToTop()}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
-              Studio Veterinario
-            </Text>
-            <Text size="sm" style={{ color: "#ffffff" }}>
-              Dott.ssa Rosita Semenza
-            </Text>
-          </Stack>
+          {isHome ? (
+            <Stack
+              gap={0}
+              style={{ color: "#ffffff", cursor: "pointer" }}
+              onClick={scrollToTop}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && scrollToTop()}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
+                Studio Veterinario
+              </Text>
+              <Text size="sm" style={{ color: "#ffffff" }}>
+                Dott.ssa Rosita Semenza
+              </Text>
+            </Stack>
+          ) : (
+            <Link href="/" className="hover:opacity-80 transition-opacity" style={{ textDecoration: "none" }}>
+              <Stack gap={0} style={{ color: "#ffffff" }}>
+                <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
+                  Studio Veterinario
+                </Text>
+                <Text size="sm" style={{ color: "#ffffff" }}>
+                  Dott.ssa Rosita Semenza
+                </Text>
+              </Stack>
+            </Link>
+          )}
           <Group gap="xl">
-            <Text
-              fw={700}
-              size="lg"
-              style={{ color: "#ffffff", cursor: "pointer" }}
-              onClick={() => scrollToSection("about")}
-              className="hover:opacity-80 transition-opacity"
-            >
-              Chi siamo
-            </Text>
-            <Text
-              fw={700}
-              size="lg"
-              style={{ color: "#ffffff", cursor: "pointer" }}
-              onClick={() => scrollToSection("services")}
-              className="hover:opacity-80 transition-opacity"
-            >
-              I nostri servizi
-            </Text>
-            <Text
-              fw={700}
-              size="lg"
-              style={{ color: "#ffffff", cursor: "pointer" }}
-              onClick={() => scrollToSection("contact")}
-              className="hover:opacity-80 transition-opacity"
-            >
-              Contatti
-            </Text>
+            {isHome ? (
+              <>
+                <Text
+                  fw={700}
+                  size="lg"
+                  style={{ color: "#ffffff", cursor: "pointer" }}
+                  onClick={() => scrollToSection("about")}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  Chi siamo
+                </Text>
+                <Text
+                  fw={700}
+                  size="lg"
+                  style={{ color: "#ffffff", cursor: "pointer" }}
+                  onClick={() => scrollToSection("services")}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  I nostri servizi
+                </Text>
+                <Text
+                  fw={700}
+                  size="lg"
+                  style={{ color: "#ffffff", cursor: "pointer" }}
+                  onClick={() => scrollToSection("contact")}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  Contatti
+                </Text>
+              </>
+            ) : (
+              <>
+                <Link href="/#about" style={{ color: "#ffffff", textDecoration: "none" }} className="hover:opacity-80 transition-opacity">
+                  <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
+                    Chi siamo
+                  </Text>
+                </Link>
+                <Link href="/#services" style={{ color: "#ffffff", textDecoration: "none" }} className="hover:opacity-80 transition-opacity">
+                  <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
+                    I nostri servizi
+                  </Text>
+                </Link>
+                <Link href="/#contact" style={{ color: "#ffffff", textDecoration: "none" }} className="hover:opacity-80 transition-opacity">
+                  <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
+                    Contatti
+                  </Text>
+                </Link>
+              </>
+            )}
           </Group>
         </Group>
       </Container>
