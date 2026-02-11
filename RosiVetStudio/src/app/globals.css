@@ -2,14 +2,19 @@
 @tailwind utilities;
 
 :root {
-  --background: #fce7f3;
-  --foreground: #171717;
+  /* Clean & Veterinary Color Palette */
+  --background: #F4F6F2; /* Soft Cream */
+  --foreground: #2F3A2F; /* Dark Olive */
+  --primary: #869684; /* Sage Green */
+  --accent: #DADDD7; /* Light Gray */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #2F3A2F; /* Dark Olive for dark mode */
+    --foreground: #F4F6F2; /* Soft Cream for text in dark mode */
+    --primary: #869684; /* Sage Green */
+    --accent: #DADDD7; /* Light Gray */
   }
 }
 
@@ -73,7 +78,7 @@ body {
 @media (prefers-color-scheme: dark) and (max-width: 768px) {
   /* Ensure good contrast on mobile dark mode */
   .dark {
-    background-color: #0a0a0a;
-    color: #ededed;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
