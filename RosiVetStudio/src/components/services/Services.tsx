@@ -3,7 +3,7 @@
 import React from "react";
 import { Container, Stack, Title, Text, Card, Image, Grid, Box } from "@mantine/core";
 import consulenzaImg from "@/assets/services/consulenza.jpg";
-import esamiImg from "@/assets/services/esami.jpg";
+import esamiImg from "@/assets/services/poop.jpg";
 import lezioniImg from "@/assets/services/lezioni.jpg";
 import terapieImg from "@/assets/services/terapie.jpg";
 import testrapidoImg from "@/assets/services/testrapido.jpg";
@@ -11,7 +11,7 @@ import vaccinazioniImg from "@/assets/services/vaccinazioni.jpg";
 import visitecanegatoImg from "@/assets/services/visitecanegato.jpg";
 import visiteesoticiImg from "@/assets/services/visiteesotici.jpg";
 import visitespecialImg from "@/assets/services/visitespecial.jpg";
-import vistebaseImg from "@/assets/services/vistebase.png";
+import vistebaseImg from "@/assets/services/visitebase.jpg";
 
 const services = [
   {
@@ -27,7 +27,7 @@ const services = [
   {
     image: vaccinazioniImg,
     title: "Vaccinazioni",
-    description: "Programmi vaccinali per cani e gatti.",
+    description: "Programmi vaccinali per cani, gatti e conigli.",
   },
   {
     image: esamiImg,

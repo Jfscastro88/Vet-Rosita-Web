@@ -6,16 +6,16 @@ import Link from "next/link";
 
 export default function PrivacyPage() {
   return (
-    <Box className="min-h-screen w-full" style={{ backgroundColor: "#F4F6F2" }}>
+    <Box className="min-h-screen w-full pt-28 min-[640px]:pt-24" style={{ backgroundColor: "#F4F6F2" }}>
       <Container size="md" py="xl">
         <Stack gap="xl">
           <Title order={1} style={{ color: "#2F3A2F" }}>
             Informativa sulla Privacy
           </Title>
           <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-            Questa Informativa spiega come Rosita VetStudio tratta i dati
-            personali quando visiti il nostro sito portfolio. Il sito è
-            puramente informativo e non utilizza cookie di analisi o marketing.
+            Questa Informativa spiega come Rosita VetStudio tratta i dati personali quando visiti il
+            nostro sito portfolio. Il sito è puramente informativo e non utilizza cookie di analisi
+            o marketing.
           </Text>
 
           <Stack gap="md">
@@ -23,9 +23,9 @@ export default function PrivacyPage() {
               1. Titolare del trattamento
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Il titolare del trattamento dei dati personali è Rosita VetStudio.
-              Per esercitare i tuoi diritti o per domande su questa informativa
-              puoi contattarci ai numeri o indirizzi indicati nel sito.
+              Il titolare del trattamento dei dati personali è Rosita VetStudio. Per esercitare i
+              tuoi diritti o per domande su questa informativa puoi contattarci ai numeri o
+              indirizzi indicati nel sito.
             </Text>
           </Stack>
 
@@ -34,8 +34,7 @@ export default function PrivacyPage() {
               2. Dati che raccogliamo
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Durante la navigazione sul sito possono essere raccolti in modo
-              automatico:
+              Durante la navigazione sul sito possono essere raccolti in modo automatico:
             </Text>
             <List size="md" style={{ color: "#2F3A2F" }}>
               <List.Item>Indirizzo IP e dati tecnici di connessione</List.Item>
@@ -43,9 +42,8 @@ export default function PrivacyPage() {
               <List.Item>Pagine visitate e data/ora di accesso</List.Item>
             </List>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Se ci contatti tramite telefono, email o altri canali indicati nel
-              sito, tratteremo i dati che ci fornisci (nome, numero, messaggio)
-              solo per rispondere alla tua richiesta.
+              Se ci contatti tramite telefono, email o altri canali indicati nel sito, tratteremo i
+              dati che ci fornisci (nome, numero, messaggio) solo per rispondere alla tua richiesta.
             </Text>
           </Stack>
 
@@ -54,11 +52,10 @@ export default function PrivacyPage() {
               3. Finalità e base giuridica
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              I dati sono trattati per: garantire il corretto funzionamento del
-              sito, rispondere alle richieste di contatto e adempiere eventuali
-              obblighi di legge. La base giuridica è il legittimo interesse
-              (funzionamento del sito) e, per i contatti, l’esecuzione di misure
-              precontrattuali o il consenso.
+              I dati sono trattati per: garantire il corretto funzionamento del sito, rispondere
+              alle richieste di contatto e adempiere eventuali obblighi di legge. La base giuridica
+              è il legittimo interesse (funzionamento del sito) e, per i contatti, l’esecuzione di
+              misure precontrattuali o il consenso.
             </Text>
           </Stack>
 
@@ -67,11 +64,10 @@ export default function PrivacyPage() {
               4. Cookie
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Questo sito non utilizza cookie di analisi (es. Google Analytics)
-              né cookie di profilazione o marketing. Possono essere utilizzati
-              solo cookie tecnici strettamente necessari al funzionamento del
-              sito (es. preferenze di visualizzazione). Non è richiesto alcun
-              consenso per i cookie tecnici.
+              Questo sito non utilizza cookie di analisi (es. Google Analytics) né cookie di
+              profilazione o marketing. Possono essere utilizzati solo cookie tecnici strettamente
+              necessari al funzionamento del sito (es. preferenze di visualizzazione). Non è
+              richiesto alcun consenso per i cookie tecnici.
             </Text>
           </Stack>
 
@@ -80,10 +76,9 @@ export default function PrivacyPage() {
               5. Conservazione dei dati
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              I dati di navigazione sono conservati per il tempo strettamente
-              necessario (anche in forma aggregata o anonima). I dati forniti in
-              seguito a un contatto sono conservati per il tempo necessario a
-              gestire la richiesta e per eventuali obblighi di legge.
+              I dati di navigazione sono conservati per il tempo strettamente necessario (anche in
+              forma aggregata o anonima). I dati forniti in seguito a un contatto sono conservati
+              per il tempo necessario a gestire la richiesta e per eventuali obblighi di legge.
             </Text>
           </Stack>
 
@@ -101,8 +96,8 @@ export default function PrivacyPage() {
               <List.Item>Portabilità dei dati (ove applicabile)</List.Item>
               <List.Item>Opporti al trattamento</List.Item>
               <List.Item>
-                Proporre reclamo all’Autorità Garante per la Protezione dei Dati
-                Personali (garanteprivacy.it)
+                Proporre reclamo all’Autorità Garante per la Protezione dei Dati Personali
+                (garanteprivacy.it)
               </List.Item>
             </List>
           </Stack>
@@ -112,9 +107,8 @@ export default function PrivacyPage() {
               7. Modifiche
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Questa informativa può essere aggiornata. La versione corrente è
-              sempre disponibile su questa pagina. Ti invitiamo a consultarla
-              periodicamente.
+              Questa informativa può essere aggiornata. La versione corrente è sempre disponibile su
+              questa pagina. Ti invitiamo a consultarla periodicamente.
             </Text>
           </Stack>
 
@@ -123,9 +117,8 @@ export default function PrivacyPage() {
               8. Contatti
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Per domande sulla privacy o per esercitare i tuoi diritti puoi
-              contattare Rosita VetStudio tramite i recapiti pubblicati nella
-              sezione contatti del sito.
+              Per domande sulla privacy o per esercitare i tuoi diritti puoi contattare Rosita
+              VetStudio tramite i recapiti pubblicati nella sezione contatti del sito.
             </Text>
           </Stack>
 

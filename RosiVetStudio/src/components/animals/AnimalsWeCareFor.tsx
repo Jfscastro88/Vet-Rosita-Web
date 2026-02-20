@@ -2,26 +2,34 @@
 
 import React from "react";
 import Image from "next/image";
-import { Container, Stack, Title, Text, Paper, Grid, Box } from "@mantine/core";
-import animal01 from "@/assets/animals/01.jpg";
-import animal02 from "@/assets/animals/02.jpg";
-import animal03 from "@/assets/animals/03.jpg";
-import animal04 from "@/assets/animals/04.jpg";
-import animal05 from "@/assets/animals/05.jpg";
-import animal06 from "@/assets/animals/06.jpg";
-import animal07 from "@/assets/animals/07.jpg";
-import animal08 from "@/assets/animals/08.jpg";
+import { Container, Stack, Title, Text, Paper, Grid, Box, Button } from "@mantine/core";
+import animal01 from "@/assets/animals/conigli.jpg";
+import animal02 from "@/assets/animals/criceti.jpg";
+import animal03 from "@/assets/animals/cavie.jpg";
+import animal04 from "@/assets/animals/furetti.jpg";
+import animal05 from "@/assets/animals/canario.jpg";
+import animal06 from "@/assets/animals/rettilli.jpg";
+import animal07 from "@/assets/animals/selvatici.jpg";
+import animal08 from "@/assets/animals/cincilla.jpg";
+import animal09 from "@/assets/animals/degu.jpg";
+import animal10 from "@/assets/animals/rattodomestico.jpg";
+import animal11 from "@/assets/animals/topolino.jpg";
+import animal12 from "@/assets/animals/galina.jpg";
 
 export default function AnimalsWeCareFor() {
   const animals = [
-    { name: "Ricci", image: animal01 },
-    { name: "Criceti", image: animal08 },
-    { name: "Cavie", image: animal07 },
-    { name: "Furetti", image: animal06 },
-    { name: "Uccelli esotici", image: animal05 },
-    { name: "Rettili", image: animal02 },
-    { name: "Anfibi", image: animal03 },
-    { name: "Altri animali esotici", image: animal04 },
+    { name: "Conigli", image: animal01 },
+    { name: "Criceti", image: animal02 },
+    { name: "Cavie", image: animal03 },
+    { name: "Selvatici", image: animal07 },
+    { name: "Furetti", image: animal04 },
+    { name: "Pappagalli e Uccelli", image: animal05 },
+    { name: "Topolino", image: animal11 },
+    { name: "Rettili", image: animal06 },
+    { name: "Cincillà", image: animal08 },
+    { name: "Degu", image: animal09 },
+    { name: "Ratto Domestico", image: animal10 },
+    { name: "Animale da Cortile", image: animal12 },
   ];
 
   return (
@@ -68,6 +76,33 @@ export default function AnimalsWeCareFor() {
                 </Paper>
               </Grid.Col>
             ))}
+            <Grid.Col span={12}>
+              <Box ta="center">
+                <Title
+                  order={4}
+                  size="1.5rem"
+                  ta="center"
+                  style={{ color: "#2F3A2F" }}
+                  mt="xl"
+                  mb="xl"
+                >
+                  Il tuo animale è in buone mani
+                </Title>
+                <Button
+                  component="a"
+                  href="#contact"
+                  size="md"
+                  variant="filled"
+                  style={{
+                    backgroundColor: "#2F3A2F",
+                    color: "#F4F6F2",
+                  }}
+                  className="hover:opacity-90 transition-opacity"
+                >
+                  Prenota ora
+                </Button>
+              </Box>
+            </Grid.Col>
           </Grid>
         </Stack>
       </Container>

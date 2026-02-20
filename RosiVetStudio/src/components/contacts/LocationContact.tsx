@@ -2,7 +2,13 @@
 
 import React from "react";
 import { Container, Stack, Title, Text, Paper, Grid, Group, Anchor, Box } from "@mantine/core";
-import { IconPhone, IconMapPin, IconClock, IconBrandInstagram } from "@tabler/icons-react";
+import {
+  IconPhone,
+  IconMapPin,
+  IconClock,
+  IconBrandInstagram,
+  IconBrandWhatsapp,
+} from "@tabler/icons-react";
 
 export default function LocationContact() {
   const mainPhone = "+393427586288";
@@ -13,11 +19,21 @@ export default function LocationContact() {
   const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
   const instagramUrl = "https://www.instagram.com/ros_the_exotic_vet";
   const baldogTrainingUrl = "https://www.instagram.com/baldog_dogtrainer";
+
+  // const schedule = [
+  //   { day: "Lunedì", hours: "dalle 16 alle 19" },
+  //   { day: "Martedì", hours: "dalle 10 alle 12.30" },
+  //   { day: "Mercoledì", hours: "dalle 16 alle 19" },
+  //   { day: "Venerdì", hours: "dalle 09.30 alle 17" },
+  //   { day: "Sabato", hours: "su appuntamento" },
+  //   { day: "Domenica", hours: "Chiuso (solo emergenze)" },
+  // ];
+
   const schedule = [
-    { day: "Lunedì", hours: "dalle 16 alle 19" },
-    { day: "Martedì", hours: "dalle 10 alle 12.30" },
-    { day: "Mercoledì", hours: "dalle 16 alle 19" },
-    { day: "Venerdì", hours: "dalle 09.30 alle 17" },
+    { day: "Lunedì", hours: "su appuntamento" },
+    { day: "Martedì", hours: "su appuntamento" },
+    { day: "Mercoledì", hours: "su appuntamento" },
+    { day: "Venerdì", hours: "su appuntamento" },
     { day: "Sabato", hours: "su appuntamento" },
     { day: "Domenica", hours: "Chiuso (solo emergenze)" },
   ];
@@ -280,10 +296,31 @@ export default function LocationContact() {
                     }}
                   >
                     <Text size="xs" fw={600} style={{ color: textMuted }} tt="uppercase" mb={4}>
-                      Nota
+                      Nota:
                     </Text>
                     <Text size="sm" style={{ color: textPrimary }} lh={1.5}>
-                      Prenotazioni consigliate. Emergenze: chiamare prima di venire.
+                      Si riceve su appuntamento. <br />
+                      <Box
+                        component="span"
+                        className="flex w-full flex-wrap flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between sm:items-center"
+                      >
+                        <span>Per prenotare una visita chiamare o scrivere su WhatsApp.</span>
+                        <Anchor
+                          href="https://wa.me/393427586288"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: accent,
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexShrink: 0,
+                          }}
+                          aria-label="WhatsApp"
+                        >
+                          <IconBrandWhatsapp size={30} style={{ display: "block" }} />
+                        </Anchor>
+                      </Box>
                     </Text>
                   </Box>
                 </Stack>
