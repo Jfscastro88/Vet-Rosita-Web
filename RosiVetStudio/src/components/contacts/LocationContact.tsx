@@ -1,7 +1,18 @@
 "use client";
 
 import React from "react";
-import { Container, Stack, Title, Text, Paper, Grid, Group, Anchor, Box } from "@mantine/core";
+import {
+  Container,
+  Stack,
+  Title,
+  Text,
+  Paper,
+  Grid,
+  Group,
+  Anchor,
+  Box,
+  Button,
+} from "@mantine/core";
 import {
   IconPhone,
   IconMapPin,
@@ -299,30 +310,23 @@ export default function LocationContact() {
                       Nota:
                     </Text>
                     <Text size="sm" style={{ color: textPrimary }} lh={1.5}>
-                      Si riceve su appuntamento. <br />
-                      <Box
-                        component="span"
-                        className="flex w-full flex-wrap flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between sm:items-center"
-                      >
-                        <span>Per prenotare una visita chiamare o scrivere su WhatsApp.</span>
-                        <Anchor
-                          href="https://wa.me/393427586288"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            color: accent,
-                            display: "inline-flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexShrink: 0,
-                          }}
-                          aria-label="WhatsApp"
-                        >
-                          <IconBrandWhatsapp size={30} style={{ display: "block" }} />
-                        </Anchor>
-                      </Box>
+                      Si riceve su appuntamento. Per prenotare una visita chiamare o scrivere su
+                      WhatsApp.
                     </Text>
                   </Box>
+
+                  <Button
+                    component="a"
+                    href="https://wa.me/393427586288"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    rightSection={<IconBrandWhatsapp size={20} />}
+                    variant="filled"
+                    style={{ backgroundColor: accent }}
+                    aria-label="Prenota ora su WhatsApp"
+                  >
+                    Prenota ora su WhatsApp
+                  </Button>
                 </Stack>
               </Paper>
             </Grid.Col>
