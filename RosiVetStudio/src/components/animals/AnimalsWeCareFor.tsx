@@ -24,12 +24,12 @@ export default function AnimalsWeCareFor() {
     { name: "Selvatici", image: animal07 },
     { name: "Furetti", image: animal04 },
     { name: "Pappagalli e Uccelli", image: animal05 },
-    { name: "Topolino", image: animal11 },
+    { name: "Topolini", image: animal11 },
     { name: "Rettili", image: animal06 },
     { name: "Cincillà", image: animal08 },
     { name: "Degu", image: animal09 },
-    { name: "Ratto Domestico", image: animal10 },
-    { name: "Animale da Cortile", image: animal12 },
+    { name: "Ratto Domestici", image: animal10 },
+    { name: "Animali da Cortile", image: animal12 },
   ];
 
   return (
