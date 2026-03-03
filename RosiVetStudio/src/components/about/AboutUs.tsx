@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Container, Stack, Title, Text, Paper } from "@mantine/core";
 import rosiImage from "@/assets/images/rosi.jpg";
-import camiImage from "@/assets/images/cami.png";
+import camiImage from "@/assets/images/cami2.jpeg";
 import classes from "./AboutUs.module.css";
 
 export default function AboutUs() {

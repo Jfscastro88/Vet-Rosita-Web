@@ -28,7 +28,7 @@ export default function AnimalsWeCareFor() {
     { name: "Rettili", image: animal06 },
     { name: "Cincillà", image: animal08 },
     { name: "Degu", image: animal09 },
-    { name: "Ratto Domestici", image: animal10 },
+    { name: "Ratti Domestici", image: animal10 },
     { name: "Animali da Cortile", image: animal12 },
   ];
 

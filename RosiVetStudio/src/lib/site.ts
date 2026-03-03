@@ -5,7 +5,7 @@ export const SITE_URL = "https://www.rosivetstudio.it";
 
 export const SITE_NAME = "Rosita VetStudio";
 export const SITE_DESCRIPTION =
-  "Veterinaria esperta in animali esotici e non convenzionali. Dott.ssa Rosita Semenza - Studio Veterinario a Garbagna Novarese (NO).";
+  "Dott.ssa Rosita Semenza - Studio Veterinario a Garbagna Novarese (NO) - Veterinaria esperta in animali esotici e non convenzionali.";
 
 export const CONTACT = {
   mainPhone: "+393427586288",
