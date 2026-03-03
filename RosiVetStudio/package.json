@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run copy-favicon && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "copy-favicon": "cp src/assets/favicon/favicon.ico src/assets/favicon/favicon-16x16.png src/assets/favicon/favicon-32x32.png src/assets/favicon/apple-touch-icon.png src/assets/favicon/android-chrome-192x192.png src/assets/favicon/android-chrome-512x512.png public/"
   },
   "dependencies": {
     "@mantine/core": "^8.3.3",
