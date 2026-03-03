@@ -1,0 +1,5 @@
+# https://www.rosivetstudio.it
+User-agent: *
+Allow: /
+
+Sitemap: https://www.rosivetstudio.it/sitemap.xml
