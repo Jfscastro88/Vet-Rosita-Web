@@ -15,12 +15,16 @@ import animal09 from "@/assets/animals/degu.jpg";
 import animal10 from "@/assets/animals/rattodomestico.jpg";
 import animal11 from "@/assets/animals/topolino.jpg";
 import animal12 from "@/assets/animals/galina.jpg";
+import animal13 from "@/assets/animals/cani.jpg";
+import animal14 from "@/assets/animals/gatti.jpg";
 
 export default function AnimalsWeCareFor() {
   const animals = [
     { name: "Conigli", image: animal01 },
     { name: "Criceti", image: animal02 },
     { name: "Cavie", image: animal03 },
+    { name: "Cani", image: animal13 },
+    { name: "Gatti", image: animal14 },
     { name: "Selvatici", image: animal07 },
     { name: "Furetti", image: animal04 },
     { name: "Pappagalli e Uccelli", image: animal05 },
