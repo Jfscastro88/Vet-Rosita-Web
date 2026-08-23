@@ -42,6 +42,7 @@ export const metadata: Metadata = {
     "Dott.ssa Rosita Semenza",
     "studio veterinario Novara",
     "animali non convenzionali",
+    "laserterapia veterinaria",
   ],
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,

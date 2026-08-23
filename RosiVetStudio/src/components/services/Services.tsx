@@ -6,6 +6,7 @@ import { Container, Stack, Title, Text, Card, Grid, Box } from "@mantine/core";
 import consulenzaImg from "@/assets/services/consulenza.jpg";
 import esamiImg from "@/assets/services/poop.jpg";
 import lezioniImg from "@/assets/services/lezioni.jpg";
+import laserterapiaImg from "@/assets/services/laserterapia.jpg";
 import terapieImg from "@/assets/services/terapie.jpg";
 import testrapidoImg from "@/assets/services/testrapido.jpg";
 import vaccinazioniImg from "@/assets/services/vaccinazioni.jpg";
@@ -14,7 +15,14 @@ import visiteesoticiImg from "@/assets/services/visiteesotici.jpg";
 import visitespecialImg from "@/assets/services/visitespecial.jpg";
 import vistebaseImg from "@/assets/services/visitebase.jpg";
 
-const services = [
+type Service = {
+  image: typeof vistebaseImg;
+  title: string;
+  description: string;
+  alt?: string;
+};
+
+const services: Service[] = [
   {
     image: vistebaseImg,
     title: "Visite base cane e gatto",
@@ -29,6 +37,13 @@ const services = [
     image: vaccinazioniImg,
     title: "Vaccinazioni",
     description: "Programmi vaccinali per cani, gatti e conigli.",
+  },
+  {
+    image: laserterapiaImg,
+    title: "Laserterapia veterinaria",
+    description:
+      "Trattamento non invasivo che aiuta a ridurre dolore e infiammazione, favorendo il recupero e i naturali processi di guarigione.",
+    alt: "Laserterapia veterinaria su un animale",
   },
   {
     image: esamiImg,
@@ -78,7 +93,13 @@ export default function Services() {
     >
       <Container size="xl">
         <Stack gap="xl">
-          <Title order={2} size="2.5rem" ta="center" style={{ color: "#2F3A2F" }} id="services-title">
+          <Title
+            order={2}
+            size="2.5rem"
+            ta="center"
+            style={{ color: "#2F3A2F" }}
+            id="services-title"
+          >
             I nostri servizi
           </Title>
           <Text size="lg" ta="center" style={{ color: "#2F3A2F" }} mb="md">
@@ -113,7 +134,7 @@ export default function Services() {
                   >
                     <Image
                       src={service.image}
-                      alt={service.title}
+                      alt={service.alt ?? service.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       style={{ objectFit: "cover" }}
