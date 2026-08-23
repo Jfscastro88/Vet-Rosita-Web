@@ -115,7 +115,7 @@ function BrandMark() {
           lineHeight: "var(--mantine-line-height-lg)",
         }}
       >
-        Studio Veterinario
+        Studio veterinario animali domestici e dove curarli
       </span>
       <span
         style={{

@@ -27,8 +27,11 @@ export default function Hero() {
         <Title className={classes.title} order={1}>
           Ogni animale merita le migliori cure
         </Title>
-        <p className={classes.subTitle} style={{ marginTop: "var(--mantine-spacing-sm)", marginBottom: 0 }}>
-          Studio Veterinario
+        <p
+          className={classes.subTitle}
+          style={{ marginTop: "var(--mantine-spacing-sm)", marginBottom: 0 }}
+        >
+          Studio veterinario animali domestici e dove curarli
           <span className={classes.description} style={{ display: "block" }}>
             Dott.ssa Rosita Semenza
           </span>
