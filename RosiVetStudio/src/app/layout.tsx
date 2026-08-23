@@ -1,30 +1,42 @@
 import "./globals.css";
 import "@mantine/core/styles.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import { ColorSchemeScript } from "@mantine/core";
 import { Providers } from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, CONTACT, OPENING_HOURS_JSON_LD } from "@/lib/site";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  CONTACT,
+  serializeJsonLd,
+} from "@/lib/site";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "700"], // regular + bold
-  display: "swap", // Optimize font loading
+  weight: ["400", "700"],
+  display: "swap",
   preload: true,
 });
 
 const ogImageUrl = `${SITE_URL}/og-image.jpg`;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Studio Veterinario - Animali esotici e non convenzionali`,
+    default: `${SITE_NAME} | Animali esotici e non convenzionali`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
+    "Studio Veterinario Animali Domestici e Dove Curarli",
     "veterinario animali esotici",
     "veterinario Garbagna Novarese",
     "Dott.ssa Rosita Semenza",
@@ -47,7 +59,7 @@ export const metadata: Metadata = {
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - Studio Veterinario`,
+        alt: `${SITE_NAME} - Studio veterinario a Garbagna Novarese`,
       },
     ],
   },
@@ -63,8 +75,6 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: { canonical: SITE_URL },
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  // Favicon from assets/favicon (copied to public) – browser tab and Google search
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -74,37 +84,63 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "VeterinaryCare",
-  "@id": `${SITE_URL}/#organization`,
-  name: SITE_NAME,
-  description: SITE_DESCRIPTION,
-  url: SITE_URL,
-  image: ogImageUrl,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Via G. Matteotti, 37",
-    addressLocality: "Garbagna Novarese",
-    postalCode: "28070",
-    addressRegion: "NO",
-    addressCountry: "IT",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    address: CONTACT.address,
-  },
-  telephone: [CONTACT.mainPhone, CONTACT.secondaryPhone],
-  openingHours: [...OPENING_HOURS_JSON_LD],
-  sameAs: [CONTACT.instagram],
-  areaServed: {
-    "@type": "GeoCircle",
-    geoMidpoint: { "@type": "GeoCoordinates", address: CONTACT.address },
-    geoRadius: "50000",
-  },
+  "@graph": [
+    {
+      "@type": "VeterinaryCare",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      image: ogImageUrl,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: CONTACT.streetAddress,
+        addressLocality: CONTACT.addressLocality,
+        postalCode: CONTACT.postalCode,
+        addressRegion: CONTACT.addressRegion,
+        addressCountry: CONTACT.addressCountry,
+      },
+      telephone: [CONTACT.mainPhone, CONTACT.secondaryPhone],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday"],
+          description: "Su appuntamento",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: "Sunday",
+          description: "Chiuso (solo emergenze)",
+        },
+      ],
+      sameAs: [CONTACT.instagram],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      inLanguage: "it-IT",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: SITE_NAME,
+          item: SITE_URL,
+        },
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -114,7 +150,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ColorSchemeScript />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </head>
       <body className={`${roboto.className} flex flex-col min-h-screen`} suppressHydrationWarning>

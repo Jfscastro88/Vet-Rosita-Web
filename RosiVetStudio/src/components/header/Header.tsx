@@ -1,24 +1,29 @@
 "use client";
 
-import React from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Container, Group, Stack, Text } from "@mantine/core";
+
+const brandLinkStyle: CSSProperties = {
+  textDecoration: "none",
+  color: "#ffffff",
+};
+
+const navLinkStyle: CSSProperties = {
+  color: "#ffffff",
+  textDecoration: "none",
+  fontWeight: 700,
+  fontSize: "var(--mantine-font-size-lg)",
+  lineHeight: "var(--mantine-line-height-lg)",
+};
+
+function scrollToId(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <header
@@ -34,90 +39,133 @@ export default function Header() {
       }}
       className="shadow-md"
     >
-      <Container size="xl" py="md">
-        <Group justify="space-between" align="center" gap="md">
+      <div
+        style={{
+          maxWidth: "var(--mantine-container-size-xl, 82.5rem)",
+          margin: "0 auto",
+          padding: "var(--mantine-spacing-md) var(--mantine-spacing-md)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "var(--mantine-spacing-md)",
+            flexWrap: "wrap",
+          }}
+        >
           {isHome ? (
-            <Stack
-              gap={0}
-              style={{ color: "#ffffff", cursor: "pointer" }}
-              onClick={scrollToTop}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === "Enter" && scrollToTop()}
+            <a
+              href="#hero"
               className="hover:opacity-80 transition-opacity"
+              style={brandLinkStyle}
+              onClick={(event) => {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              onKeyDown={(event) => {
+                if (event.key === " " || event.key === "Enter") {
+                  event.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
             >
-              <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
-                Studio Veterinario
-              </Text>
-              <Text size="sm" style={{ color: "#ffffff" }}>
-                Dott.ssa Rosita Semenza
-              </Text>
-            </Stack>
+              <BrandMark />
+            </a>
           ) : (
-            <Link href="/" className="hover:opacity-80 transition-opacity" style={{ textDecoration: "none" }}>
-              <Stack gap={0} style={{ color: "#ffffff" }}>
-                <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
-                  Studio Veterinario
-                </Text>
-                <Text size="sm" style={{ color: "#ffffff" }}>
-                  Dott.ssa Rosita Semenza
-                </Text>
-              </Stack>
+            <Link href="/" className="hover:opacity-80 transition-opacity" style={brandLinkStyle}>
+              <BrandMark />
             </Link>
           )}
-          <Group gap="xl">
-            {isHome ? (
-              <>
-                <Text
-                  fw={700}
-                  size="lg"
-                  style={{ color: "#ffffff", cursor: "pointer" }}
-                  onClick={() => scrollToSection("about")}
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  Chi siamo
-                </Text>
-                <Text
-                  fw={700}
-                  size="lg"
-                  style={{ color: "#ffffff", cursor: "pointer" }}
-                  onClick={() => scrollToSection("services")}
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  I nostri servizi
-                </Text>
-                <Text
-                  fw={700}
-                  size="lg"
-                  style={{ color: "#ffffff", cursor: "pointer" }}
-                  onClick={() => scrollToSection("contact")}
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  Contatti
-                </Text>
-              </>
-            ) : (
-              <>
-                <Link href="/#about" style={{ color: "#ffffff", textDecoration: "none" }} className="hover:opacity-80 transition-opacity">
-                  <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
-                    Chi siamo
-                  </Text>
-                </Link>
-                <Link href="/#services" style={{ color: "#ffffff", textDecoration: "none" }} className="hover:opacity-80 transition-opacity">
-                  <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
-                    I nostri servizi
-                  </Text>
-                </Link>
-                <Link href="/#contact" style={{ color: "#ffffff", textDecoration: "none" }} className="hover:opacity-80 transition-opacity">
-                  <Text fw={700} size="lg" style={{ color: "#ffffff" }}>
-                    Contatti
-                  </Text>
-                </Link>
-              </>
-            )}
-          </Group>
-        </Group>
-      </Container>
+          <nav aria-label="Navigazione principale">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--mantine-spacing-xl)",
+                flexWrap: "wrap",
+              }}
+            >
+              <NavItem href="#about" isHome={isHome}>
+                Chi siamo
+              </NavItem>
+              <NavItem href="#services" isHome={isHome}>
+                I nostri servizi
+              </NavItem>
+              <NavItem href="#contact" isHome={isHome}>
+                Contatti
+              </NavItem>
+            </div>
+          </nav>
+        </div>
+      </div>
     </header>
+  );
+}
+
+function BrandMark() {
+  return (
+    <span style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+      <span
+        style={{
+          color: "#ffffff",
+          fontWeight: 700,
+          fontSize: "var(--mantine-font-size-lg)",
+          lineHeight: "var(--mantine-line-height-lg)",
+        }}
+      >
+        Studio Veterinario
+      </span>
+      <span
+        style={{
+          color: "#ffffff",
+          fontSize: "var(--mantine-font-size-sm)",
+          lineHeight: "var(--mantine-line-height-sm)",
+        }}
+      >
+        Dott.ssa Rosita Semenza
+      </span>
+    </span>
+  );
+}
+
+function NavItem({
+  href,
+  isHome,
+  children,
+}: {
+  href: string;
+  isHome: boolean;
+  children: ReactNode;
+}) {
+  const id = href.replace("#", "");
+
+  if (isHome) {
+    return (
+      <a
+        href={href}
+        className="hover:opacity-80 transition-opacity"
+        style={navLinkStyle}
+        onClick={(event) => {
+          event.preventDefault();
+          scrollToId(id);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === " " || event.key === "Enter") {
+            event.preventDefault();
+            scrollToId(id);
+          }
+        }}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={`/${href}`} className="hover:opacity-80 transition-opacity" style={navLinkStyle}>
+      {children}
+    </Link>
   );
 }

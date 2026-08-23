@@ -9,14 +9,13 @@ import classes from "./AboutUs.module.css";
 
 export default function AboutUs() {
   return (
-    <div className={classes.aboutSection} id="about">
+    <section className={classes.aboutSection} id="about" aria-labelledby="about-title">
       <Container size="xl">
         <Stack gap="xl">
-          <Title order={2} size="2.5rem" className={classes.title}>
+          <Title order={2} size="2.5rem" className={classes.title} id="about-title">
             Chi siamo
           </Title>
 
-          {/* Rosita Section - Image on Right */}
           <Paper className={classes.card} radius="lg" p={0}>
             <div className={classes.cardInner}>
               <div className={classes.content}>
@@ -29,10 +28,7 @@ export default function AboutUs() {
                   selvatica.
                 </Text>
                 <Text className={classes.description} size="md">
-                  Ha conseguito il master universitario di II livello in "riproduzione, management,
-                  patologia e terapia degli animali non convenzionali" presso l'Università di Parma
-                  ed è, ad oggi, specializzanda in "Malattie infettive, profilassi e polizia
-                  veterinaria" presso l'università Federico II di Napoli.
+                  {`Ha conseguito il master universitario di II livello in "riproduzione, management, patologia e terapia degli animali non convenzionali" presso l'Università di Parma ed è, ad oggi, specializzanda in "Malattie infettive, profilassi e polizia veterinaria" presso l'università Federico II di Napoli.`}
                 </Text>
                 <Text className={classes.description} size="md">
                   Si dedica con dedizione alla cura di animali non convenzionali, compresi piccoli
@@ -44,14 +40,13 @@ export default function AboutUs() {
                   src={rosiImage}
                   alt="Rosita Semenza"
                   fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className={classes.image}
-                  priority
                 />
               </div>
             </div>
           </Paper>
 
-          {/* Camilla Section - Image on Left */}
           <Paper className={classes.card} radius="lg" p={0}>
             <div className={`${classes.cardInner} ${classes.cardReverse}`}>
               <div className={classes.imageContainer}>
@@ -59,8 +54,8 @@ export default function AboutUs() {
                   src={camiImage}
                   alt="Camilla Baldina"
                   fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className={classes.image}
-                  priority
                 />
               </div>
               <div className={classes.content}>
@@ -79,17 +74,13 @@ export default function AboutUs() {
                   grado di assistere le famiglie nella gestione domiciliare delle terapie.
                 </Text>
                 <Text className={classes.description} size="md">
-                  Come educatrice cinofila Camilla promuove una visione del cane che mette al centro
-                  la mente, le emozioni e la salute a 360º. Il suo lavoro si focalizza sulla
-                  costruzione di una relazione funzionale e positiva tra il cane e l'umano di
-                  riferimento, facilitando la comunicazione e il rispetto reciproco attraverso
-                  metodologie basate sulle più recenti evidenze scientifiche e comportamentali.
+                  {`Come educatrice cinofila Camilla promuove una visione del cane che mette al centro la mente, le emozioni e la salute a 360º. Il suo lavoro si focalizza sulla costruzione di una relazione funzionale e positiva tra il cane e l'umano di riferimento, facilitando la comunicazione e il rispetto reciproco attraverso metodologie basate sulle più recenti evidenze scientifiche e comportamentali.`}
                 </Text>
               </div>
             </div>
           </Paper>
         </Stack>
       </Container>
-    </div>
+    </section>
   );
 }

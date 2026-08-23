@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Container, Stack, Title, Text, Card, Image, Grid, Box } from "@mantine/core";
+import Image from "next/image";
+import { Container, Stack, Title, Text, Card, Grid, Box } from "@mantine/core";
 import consulenzaImg from "@/assets/services/consulenza.jpg";
 import esamiImg from "@/assets/services/poop.jpg";
 import lezioniImg from "@/assets/services/lezioni.jpg";
@@ -68,10 +69,16 @@ const services = [
 
 export default function Services() {
   return (
-    <Box style={{ backgroundColor: "#F4F6F2" }} className="py-16 md:py-24" id="services">
+    <Box
+      component="section"
+      style={{ backgroundColor: "#F4F6F2" }}
+      className="py-16 md:py-24"
+      id="services"
+      aria-labelledby="services-title"
+    >
       <Container size="xl">
         <Stack gap="xl">
-          <Title order={2} size="2.5rem" ta="center" style={{ color: "#2F3A2F" }}>
+          <Title order={2} size="2.5rem" ta="center" style={{ color: "#2F3A2F" }} id="services-title">
             I nostri servizi
           </Title>
           <Text size="lg" ta="center" style={{ color: "#2F3A2F" }} mb="md">
@@ -79,8 +86,8 @@ export default function Services() {
             voi e i vostri animali.
           </Text>
           <Grid gutter="lg" align="stretch">
-            {services.map((service, index) => (
-              <Grid.Col key={index} span={{ base: 12, sm: 6, lg: 4 }}>
+            {services.map((service) => (
+              <Grid.Col key={service.title} span={{ base: 12, sm: 6, lg: 4 }}>
                 <Card
                   shadow="sm"
                   padding="lg"
@@ -88,7 +95,6 @@ export default function Services() {
                   withBorder
                   style={{
                     backgroundColor: "#FFFFFF",
-                    // border: "2px solid #2F3A2F",
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
@@ -98,6 +104,7 @@ export default function Services() {
                 >
                   <Card.Section
                     style={{
+                      position: "relative",
                       height: 200,
                       overflow: "hidden",
                       margin: 12,
@@ -105,11 +112,11 @@ export default function Services() {
                     }}
                   >
                     <Image
-                      src={service.image.src}
-                      h={200}
-                      w="100%"
-                      fit="cover"
+                      src={service.image}
                       alt={service.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      style={{ objectFit: "cover" }}
                     />
                   </Card.Section>
                   <Text fw={500} size="xl" mt="md" ta="center" style={{ color: "#2F3A2F" }}>

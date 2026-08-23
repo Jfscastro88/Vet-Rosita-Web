@@ -20,20 +20,21 @@ import {
   IconBrandInstagram,
   IconBrandWhatsapp,
 } from "@tabler/icons-react";
+import { CONTACT, SITE_NAME } from "@/lib/site";
 
 export default function LocationContact() {
-  const mainPhone = "+393427586288";
-  const secondaryPhone = "+393404129704";
-  const address = "Via G. Matteotti, 37, 28070 Garbagna Novarese NO, Italia";
+  const mainPhone = CONTACT.mainPhone;
+  const secondaryPhone = CONTACT.secondaryPhone;
+  const address = CONTACT.address;
   const googleMapsUrl =
     "https://www.google.com/maps/dir/?api=1&destination=Via+G.+Matteotti,+37,+28070+Garbagna+Novarese+NO,+Italia";
   const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
-  const instagramUrl = "https://www.instagram.com/ros_the_exotic_vet";
-  const baldogTrainingUrl = "https://www.instagram.com/baldog_dogtrainer";
+  const instagramUrl = CONTACT.instagram;
+  const baldogTrainingUrl = CONTACT.instagramBaldog;
 
   // const schedule = [
   //   { day: "Lunedì", hours: "dalle 16 alle 19" },
-  //   { day: "Martedì", hours: "dalle 10 alle 12.30" },
+  //   { day: "Martedì", hours: "dalle 09.30 alle 12.30" },
   //   { day: "Mercoledì", hours: "dalle 16 alle 19" },
   //   { day: "Venerdì", hours: "dalle 09.30 alle 17" },
   //   { day: "Sabato", hours: "su appuntamento" },
@@ -41,11 +42,12 @@ export default function LocationContact() {
   // ];
 
   const schedule = [
-    { day: "Lunedì", hours: "su appuntamento" },
-    { day: "Martedì", hours: "su appuntamento" },
-    { day: "Mercoledì", hours: "su appuntamento" },
-    { day: "Venerdì", hours: "su appuntamento" },
-    { day: "Sabato", hours: "su appuntamento" },
+    { day: "Lunedì", hours: "Chiuso (solo emergenze)" },
+    { day: "Martedì", hours: "dalle 09.30 alle 12.30" },
+    { day: "Mercoledì", hours: "dalle 14.30 alle 18.30" },
+    { day: "Giovedì", hours: "dalle 09.30 alle 12.30" },
+    { day: "Venerdì", hours: "dalle 09.30 alle 18.00" },
+    { day: "Sabato", hours: "Chiuso (solo emergenze)" },
     { day: "Domenica", hours: "Chiuso (solo emergenze)" },
   ];
 
@@ -56,7 +58,13 @@ export default function LocationContact() {
   const accent = "#6b7c69";
 
   return (
-    <Box style={{ backgroundColor: sectionBg }} className="py-20 md:py-28" id="contact">
+    <Box
+      component="section"
+      style={{ backgroundColor: sectionBg }}
+      className="py-20 md:py-28"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
       <Container size="xl">
         <Stack gap="xl">
           <Stack gap="xs" align="center">
@@ -65,6 +73,7 @@ export default function LocationContact() {
               size="2rem"
               ta="center"
               style={{ color: "#2f3a2f", letterSpacing: "-0.02em" }}
+              id="contact-title"
             >
               Contatti e Orari
             </Title>
@@ -99,7 +108,13 @@ export default function LocationContact() {
                   <Text fw={600} size="sm" style={{ color: textMuted }}>
                     Indirizzo
                   </Text>
-                  <Text size="sm" ta="center" style={{ color: textPrimary }} lh={1.5}>
+                  <Text
+                    component="address"
+                    size="sm"
+                    ta="center"
+                    style={{ color: textPrimary, fontStyle: "normal" }}
+                    lh={1.5}
+                  >
                     {address}
                   </Text>
                   <Anchor
@@ -215,7 +230,7 @@ export default function LocationContact() {
                       style={{ color: textPrimary }}
                       className="hover:underline"
                     >
-                      Rosi VetStudio
+                      Studio Veterinario
                     </Anchor>
                     <Anchor
                       href={baldogTrainingUrl}
@@ -387,7 +402,7 @@ export default function LocationContact() {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Mappa dello Studio Veterinario"
+                      title={`Mappa di ${SITE_NAME}`}
                     />
                   </Box>
 

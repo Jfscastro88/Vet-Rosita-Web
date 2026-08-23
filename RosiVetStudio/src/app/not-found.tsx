@@ -12,25 +12,15 @@ export default function NotFound() {
     >
       <Container size="md">
         <Stack gap="xl" align="center" className="text-center">
-          <Title
-            order={1}
-            size="6rem"
-            fw={700}
-            style={{ color: "#2F3A2F", lineHeight: 1 }}
-          >
+          <Title order={1} size="6rem" fw={700} style={{ color: "#2F3A2F", lineHeight: 1 }}>
             404
           </Title>
-          <Title
-            order={2}
-            size="2rem"
-            fw={700}
-            style={{ color: "#2F3A2F" }}
-          >
+          <Title order={2} size="2rem" fw={700} style={{ color: "#2F3A2F" }}>
             Pagina non trovata
           </Title>
           <Text size="lg" style={{ color: "#2F3A2F", maxWidth: "500px" }}>
-            Sembra che la pagina che stai cercando non esista o sia stata
-            spostata. Torna alla homepage per continuare la navigazione.
+            Sembra che la pagina che stai cercando non esista o sia stata spostata. Torna alla
+            homepage per continuare la navigazione.
           </Text>
           <Button
             component={Link}

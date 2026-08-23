@@ -18,34 +18,46 @@ import animal12 from "@/assets/animals/galina.jpg";
 import animal13 from "@/assets/animals/cani.jpg";
 import animal14 from "@/assets/animals/gatti.jpg";
 
-export default function AnimalsWeCareFor() {
-  const animals = [
-    { name: "Conigli", image: animal01 },
-    { name: "Criceti", image: animal02 },
-    { name: "Cavie", image: animal03 },
-    { name: "Cani", image: animal13 },
-    { name: "Gatti", image: animal14 },
-    { name: "Selvatici", image: animal07 },
-    { name: "Furetti", image: animal04 },
-    { name: "Pappagalli e Uccelli", image: animal05 },
-    { name: "Topolini", image: animal11 },
-    { name: "Rettili", image: animal06 },
-    { name: "Cincillà", image: animal08 },
-    { name: "Degu", image: animal09 },
-    { name: "Ratti Domestici", image: animal10 },
-    { name: "Animali da Cortile", image: animal12 },
-  ];
+const animals = [
+  { name: "Conigli", image: animal01 },
+  { name: "Criceti", image: animal02 },
+  { name: "Cavie", image: animal03 },
+  { name: "Cani", image: animal13 },
+  { name: "Gatti", image: animal14 },
+  { name: "Selvatici", image: animal07 },
+  { name: "Furetti", image: animal04 },
+  { name: "Pappagalli e Uccelli", image: animal05 },
+  { name: "Topolini", image: animal11 },
+  { name: "Rettili", image: animal06 },
+  { name: "Cincillà", image: animal08 },
+  { name: "Degu", image: animal09 },
+  { name: "Ratti Domestici", image: animal10 },
+  { name: "Animali da Cortile", image: animal12 },
+];
 
+export default function AnimalsWeCareFor() {
   return (
-    <Box style={{ backgroundColor: "#869684" }} className="py-16 md:py-24" id="animals">
+    <Box
+      component="section"
+      style={{ backgroundColor: "#869684" }}
+      className="py-16 md:py-24"
+      id="animals"
+      aria-labelledby="animals-title"
+    >
       <Container size="xl">
         <Stack gap="xl">
-          <Title order={2} size="2.5rem" ta="center" style={{ color: "#2F3A2F" }}>
+          <Title
+            order={2}
+            size="2.5rem"
+            ta="center"
+            style={{ color: "#2F3A2F" }}
+            id="animals-title"
+          >
             Animali di cui ci prendiamo cura
           </Title>
           <Grid gutter="md">
-            {animals.map((animal, index) => (
-              <Grid.Col key={index} span={{ base: 12, sm: 6, md: 3 }}>
+            {animals.map((animal) => (
+              <Grid.Col key={animal.name} span={{ base: 12, sm: 6, md: 3 }}>
                 <Paper
                   shadow="sm"
                   p="lg"
@@ -71,7 +83,7 @@ export default function AnimalsWeCareFor() {
                       alt={animal.name}
                       fill
                       style={{ objectFit: "cover" }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
                     />
                   </Box>
                   <Text fw={600} size="lg" ta="center" style={{ color: "#2F3A2F" }}>
@@ -83,7 +95,7 @@ export default function AnimalsWeCareFor() {
             <Grid.Col span={12}>
               <Box ta="center">
                 <Title
-                  order={4}
+                  order={3}
                   size="1.5rem"
                   ta="center"
                   style={{ color: "#2F3A2F" }}

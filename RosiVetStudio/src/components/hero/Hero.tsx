@@ -2,18 +2,19 @@
 
 import React from "react";
 import Image from "next/image";
-import { Container, Title, Text, Overlay } from "@mantine/core";
+import { Container, Title, Overlay } from "@mantine/core";
 import rosiImage from "@/assets/images/hero.jpg";
 import classes from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <div className={classes.hero} id="hero">
+    <section className={classes.hero} id="hero" aria-label="Presentazione">
       <Image
         src={rosiImage}
-        alt="RosiVetStudio"
+        alt="Coniglio in un prato con un fiore in bocca"
         fill
         priority
+        sizes="100vw"
         style={{ objectFit: "cover", zIndex: 0 }}
         className={classes.backgroundImage}
       />
@@ -26,13 +27,13 @@ export default function Hero() {
         <Title className={classes.title} order={1}>
           Ogni animale merita le migliori cure
         </Title>
-        <Title className={classes.subTitle} size="xl" mt="sm">
+        <p className={classes.subTitle} style={{ marginTop: "var(--mantine-spacing-sm)", marginBottom: 0 }}>
           Studio Veterinario
-          <Text className={classes.description} size="lg">
+          <span className={classes.description} style={{ display: "block" }}>
             Dott.ssa Rosita Semenza
-          </Text>
-        </Title>
+          </span>
+        </p>
       </Container>
-    </div>
+    </section>
   );
 }

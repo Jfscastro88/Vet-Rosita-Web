@@ -1,29 +1,42 @@
 import type { NextConfig } from "next";
 
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+  },
+];
+
 const nextConfig: NextConfig = {
-  // Enable experimental features for better performance
   experimental: {
     optimizePackageImports: [
       "@mantine/core",
       "@mantine/hooks",
-      "@mantine/form",
-      "@mantine/dates",
       "@tabler/icons-react",
     ],
   },
 
-  // Optimize bundle
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
 
-  // Enable compression
   compress: true,
 
-  // Optimize images
   images: {
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
   },
 };
 

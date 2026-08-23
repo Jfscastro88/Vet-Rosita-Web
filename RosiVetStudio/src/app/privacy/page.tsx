@@ -3,6 +3,7 @@
 import React from "react";
 import { Box, Container, Title, Text, Stack, List } from "@mantine/core";
 import Link from "next/link";
+import { SITE_NAME } from "@/lib/site";
 
 export default function PrivacyPage() {
   return (
@@ -13,7 +14,7 @@ export default function PrivacyPage() {
             Informativa sulla Privacy
           </Title>
           <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-            Questa Informativa spiega come Rosita VetStudio tratta i dati personali quando visiti il
+            Questa Informativa spiega come {SITE_NAME} tratta i dati personali quando visiti il
             nostro sito portfolio. Il sito è puramente informativo e non utilizza cookie di analisi
             o marketing.
           </Text>
@@ -23,7 +24,7 @@ export default function PrivacyPage() {
               1. Titolare del trattamento
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Il titolare del trattamento dei dati personali è Rosita VetStudio. Per esercitare i
+              Il titolare del trattamento dei dati personali è {SITE_NAME}. Per esercitare i
               tuoi diritti o per domande su questa informativa puoi contattarci ai numeri o
               indirizzi indicati nel sito.
             </Text>
@@ -117,8 +118,8 @@ export default function PrivacyPage() {
               8. Contatti
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Per domande sulla privacy o per esercitare i tuoi diritti puoi contattare Rosita
-              VetStudio tramite i recapiti pubblicati nella sezione contatti del sito.
+              Per domande sulla privacy o per esercitare i tuoi diritti puoi contattare {SITE_NAME}{" "}
+              tramite i recapiti pubblicati nella sezione contatti del sito.
             </Text>
           </Stack>
 

@@ -1,8 +1,11 @@
-"use client";
-
-import React from "react";
+import type { CSSProperties } from "react";
 import Link from "next/link";
-import { Container, Stack, Text, Group, Anchor } from "@mantine/core";
+import { CONTACT, SITE_NAME } from "@/lib/site";
+
+const linkStyle: CSSProperties = {
+  textDecoration: "none",
+  color: "#2F3A2F",
+};
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,71 +18,111 @@ export default function Footer() {
       }}
       className="shadow-md mt-auto"
     >
-      <Container size="xl" py="lg">
-        <Stack gap="md" align="center">
-          <Group gap="xl" justify="center" wrap="wrap">
-            <Anchor
-              href="tel:+393427586288"
-              style={{
-                textDecoration: "none",
-                color: "#2F3A2F",
-              }}
+      <div
+        style={{
+          maxWidth: "var(--mantine-container-size-xl, 82.5rem)",
+          margin: "0 auto",
+          padding: "var(--mantine-spacing-lg) var(--mantine-spacing-md)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "var(--mantine-spacing-md)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "var(--mantine-spacing-xl)",
+            }}
+          >
+            <a
+              href={`tel:${CONTACT.mainPhone}`}
               className="hover:opacity-80 transition-opacity"
+              style={linkStyle}
             >
-              <Text size="sm" fw={500} style={{ color: "#2F3A2F" }}>
+              <span
+                style={{
+                  color: "#2F3A2F",
+                  fontWeight: 500,
+                  fontSize: "var(--mantine-font-size-sm)",
+                }}
+              >
                 📞 3427586288
-              </Text>
-            </Anchor>
-            <Anchor
-              href="tel:+393404129704"
-              style={{
-                textDecoration: "none",
-                color: "#2F3A2F",
-              }}
+              </span>
+            </a>
+            <a
+              href={`tel:${CONTACT.secondaryPhone}`}
               className="hover:opacity-80 transition-opacity"
+              style={linkStyle}
             >
-              <Text size="sm" fw={500} style={{ color: "#2F3A2F" }}>
+              <span
+                style={{
+                  color: "#2F3A2F",
+                  fontWeight: 500,
+                  fontSize: "var(--mantine-font-size-sm)",
+                }}
+              >
                 📞 3404129704
-              </Text>
-            </Anchor>
-          </Group>
-          <Text size="sm" style={{ color: "#2F3A2F" }} className="text-center">
-            © {currentYear} Rosita VetStudio - Tutti i diritti riservati
-          </Text>
-          <Text size="xs" style={{ color: "#2F3A2F" }} className="text-center">
+              </span>
+            </a>
+          </div>
+          <p
+            style={{
+              color: "#2F3A2F",
+              fontSize: "var(--mantine-font-size-sm)",
+              textAlign: "center",
+              margin: 0,
+            }}
+          >
+            © {currentYear} {SITE_NAME} - Tutti i diritti riservati
+          </p>
+          <p
+            style={{
+              color: "#2F3A2F",
+              fontSize: "var(--mantine-font-size-xs)",
+              textAlign: "center",
+              margin: 0,
+            }}
+          >
             Veterinaria esperta in animali esotici e non convenzionali
-          </Text>
-          <Group gap="xl" justify="center" wrap="wrap">
-            <Anchor
-              component={Link}
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "var(--mantine-spacing-xl)",
+            }}
+          >
+            <Link
               href="/privacy"
-              style={{
-                textDecoration: "none",
-                color: "#2F3A2F",
-              }}
               className="hover:opacity-80 transition-opacity"
+              style={linkStyle}
             >
-              <Text size="xs" style={{ color: "#2F3A2F" }}>
+              <span style={{ color: "#2F3A2F", fontSize: "var(--mantine-font-size-xs)" }}>
                 Informativa sulla Privacy
-              </Text>
-            </Anchor>
-            <Anchor
-              component={Link}
+              </span>
+            </Link>
+            <a
               href="https://www.linkedin.com/in/jfscastro88"
               target="_blank"
-              style={{
-                textDecoration: "none",
-                color: "#2F3A2F",
-              }}
+              rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity"
+              style={linkStyle}
             >
-              <Text size="xs" style={{ color: "#2F3A2F" }}>
+              <span style={{ color: "#2F3A2F", fontSize: "var(--mantine-font-size-xs)" }}>
                 Jfscastro
-              </Text>
-            </Anchor>
-          </Group>
-        </Stack>
-      </Container>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
