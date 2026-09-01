@@ -32,9 +32,7 @@ export default function Hero() {
           style={{ marginTop: "var(--mantine-spacing-sm)", marginBottom: 0 }}
         >
           Studio veterinario animali domestici e dove curarli
-          <span className={classes.description} style={{ display: "block" }}>
-            Dott.ssa Rosita Semenza
-          </span>
+          <span className={classes.description}>Dott.ssa Rosita Semenza</span>
         </p>
       </Container>
     </section>

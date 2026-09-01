@@ -43,17 +43,22 @@
 }
 
 .description {
+  display: block;
   color: #ffffff;
   font-size: 1.25rem;
+  font-weight: 400;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .title {
     font-size: 2rem;
   }
-}
 
-.description {
-  color: #ffffff;
-  font-size: 1.25rem;
+  .subTitle {
+    font-size: 1.125rem;
+  }
+
+  .description {
+    display: none;
+  }
 }
