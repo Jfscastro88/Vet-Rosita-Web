@@ -3,6 +3,7 @@ import "@mantine/core/styles.css";
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import { ColorSchemeScript } from "@mantine/core";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
@@ -160,6 +161,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           <Footer />
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   );

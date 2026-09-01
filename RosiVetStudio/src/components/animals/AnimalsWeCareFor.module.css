@@ -1,0 +1,45 @@
+.animalCard {
+  width: 100%;
+  height: 100%;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.animalCard:active {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(47, 58, 47, 0.18);
+  border-color: #2f3a2f;
+}
+
+.animalCard:focus-visible {
+  outline: 2px solid #2f3a2f;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .animalCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(47, 58, 47, 0.2);
+    border-color: #2f3a2f;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animalCard {
+    transition: none;
+  }
+
+  .animalCard:hover,
+  .animalCard:active {
+    transform: none;
+  }
+}

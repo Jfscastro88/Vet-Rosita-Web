@@ -1,88 +1,35 @@
 "use client";
 
-import React from "react";
+import { useCallback, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import { Container, Stack, Title, Text, Card, Grid, Box } from "@mantine/core";
-import consulenzaImg from "@/assets/services/consulenza.jpg";
-import esamiImg from "@/assets/services/poop.jpg";
-import lezioniImg from "@/assets/services/lezioni.jpg";
-import laserterapiaImg from "@/assets/services/laserterapia.jpg";
-import terapieImg from "@/assets/services/terapie.jpg";
-import testrapidoImg from "@/assets/services/testrapido.jpg";
-import vaccinazioniImg from "@/assets/services/vaccinazioni.jpg";
-import visitecanegatoImg from "@/assets/services/visitecanegato.jpg";
-import visiteesoticiImg from "@/assets/services/visiteesotici.jpg";
-import visitespecialImg from "@/assets/services/visitespecial.jpg";
-import vistebaseImg from "@/assets/services/visitebase.jpg";
-
-type Service = {
-  image: typeof vistebaseImg;
-  title: string;
-  description: string;
-  alt?: string;
-};
-
-const services: Service[] = [
-  {
-    image: vistebaseImg,
-    title: "Visite base cane e gatto",
-    description: "Controlli di routine e visite per cani e gatti.",
-  },
-  {
-    image: visitespecialImg,
-    title: "Visite specialistiche",
-    description: "Animali esotici e non convenzionali.",
-  },
-  {
-    image: vaccinazioniImg,
-    title: "Vaccinazioni",
-    description: "Programmi vaccinali per cani, gatti e conigli.",
-  },
-  {
-    image: laserterapiaImg,
-    title: "Laserterapia veterinaria",
-    description:
-      "Trattamento non invasivo che aiuta a ridurre dolore e infiammazione, favorendo il recupero e i naturali processi di guarigione.",
-    alt: "Laserterapia veterinaria su un animale",
-  },
-  {
-    image: esamiImg,
-    title: "Esami coprologici",
-    description: "Analisi e test di laboratorio.",
-  },
-  {
-    image: testrapidoImg,
-    title: "Test rapidi",
-    description: "Test rapidi per cani e gatti.",
-  },
-  {
-    image: consulenzaImg,
-    title: "Consulenze",
-    description: "Pre-adozione e consulenze online.",
-  },
-  {
-    image: lezioniImg,
-    title: "Educazione cinofila",
-    description: "Lezioni per cuccioli e cani di ogni età.",
-  },
-  {
-    image: visiteesoticiImg,
-    title: "Visite animali esotici",
-    description: "Visite a domicilio per esotici e da cortile.",
-  },
-  {
-    image: visitecanegatoImg,
-    title: "Visite a domicilio cane e gatto",
-    description: "Visite a domicilio per cani e gatti.",
-  },
-  {
-    image: terapieImg,
-    title: "Terapie a domicilio",
-    description: "Terapie a domicilio per cane, gatto ed esotici.",
-  },
-];
+import { services, type Service } from "./services.data";
+import ServiceDetailModal from "./ServiceDetailModal";
+import classes from "./Services.module.css";
 
 export default function Services() {
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [opened, setOpened] = useState(false);
+
+  const handleOpen = useCallback((service: Service) => {
+    setSelectedService(service);
+    setOpened(true);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setOpened(false);
+  }, []);
+
+  const handleCardKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>, service: Service) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleOpen(service);
+      }
+    },
+    [handleOpen],
+  );
+
   return (
     <Box
       component="section"
@@ -114,6 +61,7 @@ export default function Services() {
                   padding="lg"
                   radius="md"
                   withBorder
+                  className={classes.serviceCard}
                   style={{
                     backgroundColor: "#FFFFFF",
                     height: "100%",
@@ -121,7 +69,13 @@ export default function Services() {
                     flexDirection: "column",
                     minHeight: 380,
                   }}
-                  className="hover:shadow-xl transition-all"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleOpen(service)}
+                  onKeyDown={(event) => handleCardKeyDown(event, service)}
+                  aria-haspopup="dialog"
+                  aria-expanded={opened && selectedService?.title === service.title}
+                  aria-label={`Apri i dettagli del servizio ${service.title}`}
                 >
                   <Card.Section
                     style={{
@@ -152,6 +106,7 @@ export default function Services() {
           </Grid>
         </Stack>
       </Container>
+      <ServiceDetailModal service={selectedService} opened={opened} onClose={handleClose} />
     </Box>
   );
 }

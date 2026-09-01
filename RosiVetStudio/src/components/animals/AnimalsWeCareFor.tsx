@@ -1,41 +1,35 @@
 "use client";
 
-import React from "react";
+import { useCallback, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import { Container, Stack, Title, Text, Paper, Grid, Box, Button } from "@mantine/core";
-import animal01 from "@/assets/animals/conigli.jpg";
-import animal02 from "@/assets/animals/criceti.jpg";
-import animal03 from "@/assets/animals/cavie.jpg";
-import animal04 from "@/assets/animals/furetti.jpg";
-import animal05 from "@/assets/animals/canario.jpg";
-import animal06 from "@/assets/animals/rettilli.jpg";
-import animal07 from "@/assets/animals/selvatici.jpg";
-import animal08 from "@/assets/animals/cincilla.jpg";
-import animal09 from "@/assets/animals/degu.jpg";
-import animal10 from "@/assets/animals/rattodomestico.jpg";
-import animal11 from "@/assets/animals/topolino.jpg";
-import animal12 from "@/assets/animals/galina.jpg";
-import animal13 from "@/assets/animals/cani.jpg";
-import animal14 from "@/assets/animals/gatti.jpg";
-
-const animals = [
-  { name: "Conigli", image: animal01 },
-  { name: "Criceti", image: animal02 },
-  { name: "Cavie", image: animal03 },
-  { name: "Cani", image: animal13 },
-  { name: "Gatti", image: animal14 },
-  { name: "Selvatici", image: animal07 },
-  { name: "Furetti", image: animal04 },
-  { name: "Pappagalli e Uccelli", image: animal05 },
-  { name: "Topolini", image: animal11 },
-  { name: "Rettili", image: animal06 },
-  { name: "Cincillà", image: animal08 },
-  { name: "Degu", image: animal09 },
-  { name: "Ratti Domestici", image: animal10 },
-  { name: "Animali da Cortile", image: animal12 },
-];
+import { animals, type Animal } from "./animals.data";
+import AnimalDetailModal from "./AnimalDetailModal";
+import classes from "./AnimalsWeCareFor.module.css";
 
 export default function AnimalsWeCareFor() {
+  const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
+  const [opened, setOpened] = useState(false);
+
+  const handleOpen = useCallback((animal: Animal) => {
+    setSelectedAnimal(animal);
+    setOpened(true);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setOpened(false);
+  }, []);
+
+  const handleCardKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>, animal: Animal) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleOpen(animal);
+      }
+    },
+    [handleOpen],
+  );
+
   return (
     <Box
       component="section"
@@ -62,11 +56,18 @@ export default function AnimalsWeCareFor() {
                   shadow="sm"
                   p="lg"
                   radius="md"
+                  className={classes.animalCard}
                   style={{
                     backgroundColor: "#F4F6F2",
                     border: "2px solid #869684",
                   }}
-                  className="hover:shadow-lg transition-all"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleOpen(animal)}
+                  onKeyDown={(event) => handleCardKeyDown(event, animal)}
+                  aria-haspopup="dialog"
+                  aria-expanded={opened && selectedAnimal?.name === animal.name}
+                  aria-label={`Apri i dettagli su ${animal.name}`}
                 >
                   <Box
                     style={{
@@ -122,6 +123,7 @@ export default function AnimalsWeCareFor() {
           </Grid>
         </Stack>
       </Container>
+      <AnimalDetailModal animal={selectedAnimal} opened={opened} onClose={handleClose} />
     </Box>
   );
 }

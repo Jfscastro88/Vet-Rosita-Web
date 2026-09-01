@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
       "@mantine/core",
       "@mantine/hooks",
       "@tabler/icons-react",
+      "@vercel/speed-insights",
     ],
   },
 
