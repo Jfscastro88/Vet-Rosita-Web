@@ -20,34 +20,28 @@ import {
   IconBrandInstagram,
   IconBrandWhatsapp,
 } from "@tabler/icons-react";
-import { CONTACT, SITE_NAME } from "@/lib/site";
+import {
+  CONTACT,
+  GOOGLE_MAPS_DIRECTIONS_URL,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_PLACE_URL,
+  SITE_NAME,
+} from "@/lib/site";
 
 export default function LocationContact() {
   const mainPhone = CONTACT.mainPhone;
   const secondaryPhone = CONTACT.secondaryPhone;
   const address = CONTACT.address;
-  const googleMapsUrl =
-    "https://www.google.com/maps/dir/?api=1&destination=Via+G.+Matteotti,+37,+28070+Garbagna+Novarese+NO,+Italia";
-  const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
   const instagramUrl = CONTACT.instagram;
   const baldogTrainingUrl = CONTACT.instagramBaldog;
 
-  // const schedule = [
-  //   { day: "Lunedì", hours: "dalle 16 alle 19" },
-  //   { day: "Martedì", hours: "dalle 09.30 alle 12.30" },
-  //   { day: "Mercoledì", hours: "dalle 16 alle 19" },
-  //   { day: "Venerdì", hours: "dalle 09.30 alle 17" },
-  //   { day: "Sabato", hours: "su appuntamento" },
-  //   { day: "Domenica", hours: "Chiuso (solo emergenze)" },
-  // ];
-
   const schedule = [
-    { day: "Lunedì", hours: "Chiuso (solo emergenze)" },
+    { day: "Lunedì", hours: "dalle 9.30 alle 18.30" },
     { day: "Martedì", hours: "dalle 09.30 alle 12.30" },
     { day: "Mercoledì", hours: "dalle 14.30 alle 18.30" },
     { day: "Giovedì", hours: "dalle 09.30 alle 12.30" },
     { day: "Venerdì", hours: "dalle 09.30 alle 18.00" },
-    { day: "Sabato", hours: "Chiuso (solo emergenze)" },
+    { day: "Sabato", hours: "dalle 10 alle 12.30" },
     { day: "Domenica", hours: "Chiuso (solo emergenze)" },
   ];
 
@@ -118,7 +112,7 @@ export default function LocationContact() {
                     {address}
                   </Text>
                   <Anchor
-                    href={googleMapsUrl}
+                    href={GOOGLE_MAPS_DIRECTIONS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     size="xs"
@@ -395,7 +389,7 @@ export default function LocationContact() {
                     }}
                   >
                     <iframe
-                      src={googleMapsEmbedUrl}
+                      src={GOOGLE_MAPS_EMBED_URL}
                       width="100%"
                       height="100%"
                       style={{ border: 0, minHeight: "400px", display: "block" }}
@@ -407,7 +401,7 @@ export default function LocationContact() {
                   </Box>
 
                   <Anchor
-                    href={googleMapsUrl}
+                    href={GOOGLE_MAPS_PLACE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     size="sm"

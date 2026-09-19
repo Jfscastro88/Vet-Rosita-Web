@@ -12,6 +12,7 @@ import {
   SITE_NAME,
   SITE_DESCRIPTION,
   CONTACT,
+  GOOGLE_MAPS_PLACE_URL,
   serializeJsonLd,
 } from "@/lib/site";
 
@@ -110,6 +111,12 @@ const jsonLd = {
         addressRegion: CONTACT.addressRegion,
         addressCountry: CONTACT.addressCountry,
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: CONTACT.latitude,
+        longitude: CONTACT.longitude,
+      },
+      hasMap: GOOGLE_MAPS_PLACE_URL,
       telephone: [CONTACT.mainPhone, CONTACT.secondaryPhone],
       openingHoursSpecification: [
         {
