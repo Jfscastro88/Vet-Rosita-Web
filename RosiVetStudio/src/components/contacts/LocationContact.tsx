@@ -37,10 +37,10 @@ export default function LocationContact() {
 
   const schedule = [
     { day: "Lunedì", hours: "dalle 9.30 alle 18.30" },
-    { day: "Martedì", hours: "dalle 09.30 alle 12.30" },
-    { day: "Mercoledì", hours: "dalle 14.30 alle 18.30" },
-    { day: "Giovedì", hours: "dalle 09.30 alle 12.30" },
-    { day: "Venerdì", hours: "dalle 09.30 alle 18.00" },
+    { day: "Martedì", hours: "ddalle 9.30 alle 18.30" },
+    { day: "Mercoledì", hours: "dalle 9.30 alle 18.30" },
+    { day: "Giovedì", hours: "dalle 9.30 alle 18.30" },
+    { day: "Venerdì", hours: "dalle 9.30 alle 18.30" },
     { day: "Sabato", hours: "dalle 10 alle 12.30" },
     { day: "Domenica", hours: "Chiuso (solo emergenze)" },
   ];
