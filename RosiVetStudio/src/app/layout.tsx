@@ -1,12 +1,15 @@
 import "./globals.css";
 import "@mantine/core/styles.css";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Roboto } from "next/font/google";
 import { ColorSchemeScript } from "@mantine/core";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import GoogleAds from "@/components/analytics/GoogleAds";
+import { GOOGLE_ADS_ID, GOOGLE_TAG_ID } from "@/lib/gtag";
 import {
   SITE_URL,
   SITE_NAME,
@@ -164,8 +167,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_TAG_ID}');
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
       </head>
       <body className={`${roboto.className} flex flex-col min-h-screen`} suppressHydrationWarning>
+        <GoogleAds />
         <Providers>
           <Header />
           <main className="flex-1">{children}</main>

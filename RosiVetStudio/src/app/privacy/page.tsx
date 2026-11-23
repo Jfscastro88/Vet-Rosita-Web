@@ -15,8 +15,8 @@ export default function PrivacyPage() {
           </Title>
           <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
             Questa Informativa spiega come {SITE_NAME} tratta i dati personali quando visiti il
-            nostro sito portfolio. Il sito è puramente informativo e non utilizza cookie di analisi
-            o marketing.
+            nostro sito. Il sito è informativo. Per misurare i contatti arrivati dalle campagne
+            Google Ads utilizziamo il tag di conversione di Google.
           </Text>
 
           <Stack gap="md">
@@ -54,9 +54,10 @@ export default function PrivacyPage() {
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
               I dati sono trattati per: garantire il corretto funzionamento del sito, rispondere
-              alle richieste di contatto e adempiere eventuali obblighi di legge. La base giuridica
-              è il legittimo interesse (funzionamento del sito) e, per i contatti, l’esecuzione di
-              misure precontrattuali o il consenso.
+              alle richieste di contatto, misurare le conversioni delle campagne Google Ads e
+              adempiere eventuali obblighi di legge. La base giuridica è il legittimo interesse
+              (funzionamento del sito e misurazione delle campagne) e, per i contatti, l’esecuzione
+              di misure precontrattuali o il consenso.
             </Text>
           </Stack>
 
@@ -65,10 +66,11 @@ export default function PrivacyPage() {
               4. Cookie
             </Title>
             <Text size="md" style={{ color: "#2F3A2F" }} className="leading-relaxed">
-              Questo sito non utilizza cookie di analisi (es. Google Analytics) né cookie di
-              profilazione o marketing. Possono essere utilizzati solo cookie tecnici strettamente
-              necessari al funzionamento del sito (es. preferenze di visualizzazione). Non è
-              richiesto alcun consenso per i cookie tecnici.
+              Questo sito non utilizza Google Analytics. Utilizza il tag Google di Google Ads per
+              misurare le conversioni, in particolare quando un visitatore chiama o scrive su
+              WhatsApp. Google può impostare cookie collegati a quella misurazione. Possono essere
+              utilizzati anche cookie tecnici strettamente necessari al funzionamento del sito (es.
+              preferenze di visualizzazione).
             </Text>
           </Stack>
 
